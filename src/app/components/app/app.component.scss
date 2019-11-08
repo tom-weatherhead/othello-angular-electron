@@ -1,0 +1,103 @@
+body {
+	overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+	min-height: 100vh;
+	margin-left: -15rem;
+	-webkit-transition: margin .25s ease-out;
+	-moz-transition: margin .25s ease-out;
+	-o-transition: margin .25s ease-out;
+	transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+	width: 15rem;
+}
+
+#page-content-wrapper {
+	min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+	margin-left: 0;
+}
+
+@media (min-width: 768px) {
+	#sidebar-wrapper {
+		margin-left: 0;
+	}
+
+	#page-content-wrapper {
+		min-width: 0;
+		width: 100%;
+	}
+
+	#wrapper.toggled #sidebar-wrapper {
+		margin-left: -15rem;
+	}
+}
+
+/* Transitions are at 768 px (sidebar appears/disappears) and 992 px (navbar expands/contracts). */
+
+/* ThAW 2019-07-12 : Hack 1: Prevents the right side of the drop-down menu from extending outside the browser window. */
+/* This works too: .dropdown-menu { */
+/* .nav-item.dropdown .dropdown-menu {
+	position: absolute;
+	left: 0;
+} */
+
+@media (min-width: 992px) {
+	/* This works too: .dropdown-menu { */
+	.nav-item.dropdown .dropdown-menu {
+		left: auto;
+	}
+}
+
+/* Hack 2: When the browser window width is < 992 px and the hamburger menu -> drop-down list is opened, it should push the page content down.
+ * /
+.nav-item.dropdown {
+	display: list-item;
+} */
+
+/* **** BEGIN SCSS for Othello **** */
+
+.contentFoo {
+	text-align: center;
+	/* padding: 50px; */
+	margin: auto;
+}
+
+.contentFoo table {
+    margin-left: auto;          /* This line and the next are from http://www.granneman.com/webdev/coding/css/centertables/ ; they centre the table. */
+    margin-right: auto;
+    border-collapse: collapse;  /* Or border-spacing: 0px; this helps to eliminate space in the table. */
+}
+
+.contentFoo td {
+	width: 50px;
+	height: 50px;
+}
+
+.contentFoo tr, .contentFoo td {
+	padding: 0;
+	margin: 0;
+}
+
+.contentFoo table img, .contentFoo table canvas {
+	display: block;             /* To eliminate space below the image.  See http://www.loriswebs.com/html-tips/form-button.html . */
+}
+
+/* .app {
+	display: block;
+	text-align: center;
+	padding: 25px;
+	background: #f5f5f5;
+} */
+
+/* **** END SCSS for Othello **** */
