@@ -5,7 +5,7 @@
 	"version": "0.0.0",
 	"main": "main.js",
 	"scripts": {
-		"all": "npm run clean && npm i && npm run testall && npm start",
+		"all": "npm run clean && npm i && npm run test-all && npm start",
 		"clean": "rm -rf dist && rm -rf node_modules && rm -f package-lock.json",
 		"build": "npm i && npm start",
 		"rebuild": "npm run clean && npm run build",
@@ -16,10 +16,11 @@
 		"electron-without-gpu": "electron --disable-gpu .",
 		"lint": "tslint ./src/**/*.ts -t verbose -p tsconfig.app.json -c tslint.json",
 		"unittests": "ng test",
+		"unittests-headless": "ng test --watch=false --browsers=ChromeHeadless",
 		"e2e": "ng e2e",
 		"systemtests": "npm run e2e",
-		"testall": "npm run lint && npm run unittests && npm run systemtests",
-		"test-travis": "npm run lint && npm run unittests",
+		"test-all": "npm run lint && npm run unittests-headless && npm run systemtests",
+		"test-travis": "npm run test-all",
 		"serve": "ng serve",
 		"start": "npm run build-ng && npm run electron"
 	},
@@ -63,7 +64,7 @@
 	},
 	"engineStrict": true,
 	"engines": {
-		"node": ">= 8"
+		"node": ">= 10"
 	},
 	"keywords": [
 		"Angular",
