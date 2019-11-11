@@ -74,7 +74,7 @@
 	},
 	"engineStrict": true,
 	"engines": {
-		"node": ">= 9"
+		"node": ">= 10.9"
 	},
 	"keywords": [
 		"Angular",
