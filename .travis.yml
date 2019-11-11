@@ -1,3 +1,6 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=b4958672236cacf21b6c33137a4a1a7f4a839544a7ebebfda8e6a4268372417a
 sudo: required
 language: node_js
 node_js:
@@ -26,5 +29,10 @@ install:
 before_script:
   - webdriver-manager clean
   - webdriver-manager update --versions.chrome=78.0.3904.70
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - npm run test-travis
+after_script:
+  - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
