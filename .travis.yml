@@ -1,10 +1,16 @@
-sudo: false
+sudo: required
 language: node_js
 node_js:
   - node
   - 12
-  - 11
-  - 10
+addons:
+  apt:
+    update: true
+    sources:
+      - google-chrome
+    packages:
+      - dpkg
+      - google-chrome-stable
 branches:
   only:
     - master
