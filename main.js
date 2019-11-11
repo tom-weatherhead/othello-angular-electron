@@ -3,7 +3,7 @@
 const os = require('os');
 const { app, BrowserWindow, Tray } = require('electron');
 
-const browserWindowWidth = 900;
+const browserWindowWidth = 992;
 const browserWindowHeight = 750;
 
 // See https://electronjs.org/docs/api/app#appdisablehardwareacceleration
