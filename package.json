@@ -82,7 +82,9 @@
 		"Docker",
 		"Electron",
 		"Othello",
-		"Reversi"
+		"PulseAudio",
+		"Reversi",
+		"TypeScript"
 	],
 	"author": "Tom Weatherhead <null@2hrd4u.org> (https://httpbin.org/status/418)",
 	"license": "MIT"
