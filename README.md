@@ -29,7 +29,7 @@ To build, test, and run the project as an Electron desktop application:
 $ npm run all
 ```
 
-Then, to run the project as a Web application available at [http://localhost:4200/]
+Then, to run the project as a Web application available at [http://localhost:4200/](http://localhost:4200/)
 
 ```sh
 $ npm run serve

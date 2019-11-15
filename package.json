@@ -1,6 +1,6 @@
 {
 	"name": "othello-angular-electron",
-	"description": "An Othello (Reversi) game application built on Angular, Bootstrap, Docker, and Electron.",
+	"description": "An Othello (Reversi) proof-of-concept application built on Angular, Bootstrap, Docker, and Electron.",
 	"private": false,
 	"version": "0.0.0",
 	"repository": {
@@ -45,7 +45,7 @@
 		"jquery": "^3.4.1",
 		"node-sass": "^4.13.0",
 		"popper.js": "^1.16.0",
-		"thaw-common-utilities.js": "^0.0.26",
+		"thaw-common-utilities.js": "^0.0.27",
 		"thaw-reversi-engine": "^0.2.0",
 		"zone.js": "0.9.1"
 	},
