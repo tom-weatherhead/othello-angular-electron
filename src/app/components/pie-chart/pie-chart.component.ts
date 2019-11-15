@@ -17,8 +17,8 @@ import { Location }                         from '@angular/common';
 
 @Component({
 	selector: 'pie-chart',
-	templateUrl: './pie-chart.component.html',
-	styleUrls: ['./pie-chart.component.scss']
+	templateUrl: './pie-chart.component.html' //,
+	// styleUrls: ['./pie-chart.component.scss']
 })
 // export class PieChartComponent implements AfterViewChecked, AfterViewInit, OnInit {
 export class PieChartComponent implements OnInit {
@@ -140,7 +140,7 @@ export class PieChartComponent implements OnInit {
 	// 	*/
 	// }
 
-	public onClickGoToOthello(): void {
-		this.router.navigate(['/othello']);
+	public onClickGoToBarChart(): void  {
+		this.router.navigate(['/bar-chart']);
 	}
 }

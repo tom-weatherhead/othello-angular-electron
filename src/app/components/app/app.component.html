@@ -48,57 +48,8 @@
 				</div>
 			</nav>
 
-			<!-- TODO: Put this here, and remove the div below into an Othello component
+			<!-- router-outlet : The Othello, pie chart, etc. components will appear here: -->
 			<router-outlet></router-outlet>
-			-->
-			<router-outlet></router-outlet>
-
-			<!--
-			<div class="container-fluid contentFoo">
-				<h1 class="mt-4">Othello</h1>
-				<br />
-
-				<div class="text" *ngIf="showMessage">
-					<audio src="assets/chime.mp3" autoplay></audio>
-					<label>{{message}}</label>
-					<br />
-				</div>
-
-				<button type="button" (click)="onClickOneAutomove()">One automove</button>
-				<button type="button" (click)="onClickNewGame()">New game</button>
-				<br />
-
-				<label>X: pop {{populations.X}};&nbsp;</label>
-				<label class="btn-primary" ngbButtonLabel>
-					<input type="checkbox" ngbButton [(ngModel)]="automaticMove.X"> automove
-				</label>
-
-				<label>&nbsp;&nbsp; O: pop {{populations.O}};&nbsp;</label>
-				<label class="btn-primary" ngbButtonLabel>
-					<input type="checkbox" ngbButton [(ngModel)]="automaticMove.O"> automove
-				</label>
-				<br />
-
-				<canvas #canvas width="400" height="400" (click)="onClickCanvas($event)"></canvas>
-				<br />
-
-				<div ngbDropdown class="d-inline-block">
-					<button class="btn btn-outline-primary" id="ddlPly" ngbDropdownToggle >
-						{{messageInPlyDDL}}
-					</button>
-
-					<div ngbDropdownMenu class="dropdown-menu" id="options" aria-labelledby="ddlPly">
-						<div *ngFor="let option of optionsInPlyDDL">
-							<button class="dropdown-item"
-							id="option" (click)="changeMessageInPlyDDL(option)">{{option}}</button>
-						</div>
-					</div>
-				</div>
-				<br />
-
-				<button type="button" (click)="onClickGoToPieChart()">Pie Chart</button>
-			</div>
-			-->
 		</div>
 		<!-- /#page-content-wrapper -->
 

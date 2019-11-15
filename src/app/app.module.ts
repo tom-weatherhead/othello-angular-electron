@@ -1,3 +1,5 @@
+// othello-angular-electron/src/app/app.module.ts
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +24,7 @@ import { ChartsModule }						from 'ng2-charts';
 import { AppComponent } from './components/app/app.component';
 import { OthelloComponent } from './components/othello/othello.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
 	imports: [
@@ -43,7 +46,8 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 		AppComponent,
 		// NgbDropdown,
 		OthelloComponent,
-		PieChartComponent
+		PieChartComponent,
+		BarChartComponent
 	],
 	providers: [
 		// ConfigService,

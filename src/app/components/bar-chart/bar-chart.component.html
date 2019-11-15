@@ -1,17 +1,17 @@
 <div class="container-fluid centre">
-	<h1 class="mt-4">Pie Chart</h1>
+	<h1 class="mt-4">Bar Chart</h1>
 	<br />
 
 	<div style="display: block">
 		<canvas baseChart class="centre"
 			[data]="chartData"
 			[labels]="chartLabels"
-			chartType="pie"
+			chartType="bar"
 			(chartHover)="chartHovered($event)"
 			(chartClick)="chartClicked($event)">
 		</canvas>
 	</div>
 	<br />
 
-	<button type="button" (click)="onClickGoToBarChart()">Bar Chart</button>
+	<button type="button" (click)="onClickGoToOthello()">Othello</button>
 </div>
