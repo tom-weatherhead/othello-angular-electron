@@ -10,6 +10,9 @@ import {
 	ViewChild
 } from '@angular/core';
 
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location }                         from '@angular/common';
+
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // import { of, timer } from 'rxjs';
@@ -84,7 +87,11 @@ export class AppComponent implements OnInit {
 	toggleStatus: boolean = false;
 
 	// constructor(private cd: ChangeDetectorRef) {
-	constructor() {
+	// constructor() {
+	constructor(// private changeDetectorRef: ChangeDetectorRef,
+		private route: ActivatedRoute,
+		private router: Router,
+		private location: Location) {
 	}
 
 	ngOnInit() {
@@ -280,5 +287,9 @@ export class AppComponent implements OnInit {
 
 	menuToggle() {
 		this.toggleStatus = !this.toggleStatus;
+	}
+
+	onClickGoToPieChart () {
+		this.router.navigate(['/pie-chart']);
 	}
 }

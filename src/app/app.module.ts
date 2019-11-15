@@ -15,10 +15,16 @@ import {
 	// NgbDropdown
 } from '@ng-bootstrap/ng-bootstrap';
 
+import { AppRoutingModule } from './app-routing.module';
+
+import { ChartsModule }						from 'ng2-charts';
+
 import { AppComponent } from './components/app/app.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
 	imports: [
+		AppRoutingModule,
 		BrowserModule,
 		FormsModule,
 		// HttpClientModule,
@@ -27,18 +33,22 @@ import { AppComponent } from './components/app/app.component';
 		// JsonpModule,
 		// NgbModule.forRoot()
 
+		ChartsModule,
+
 		NgbModule
 		// NgbDropdownModule
 	],
 	declarations: [
-		AppComponent //,
-		// NgbDropdown
+		AppComponent,
+		// NgbDropdown,
+		PieChartComponent
 	],
 	providers: [
 		// ConfigService,
 		// HttpJsonClientService,
 		// etc.
 	],
-	bootstrap: [AppComponent]
+	// bootstrap: [AppComponent]
+	bootstrap: [PieChartComponent]
 })
 export class AppModule { }
