@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule }						from 'ng2-charts';
 
 import { AppComponent } from './components/app/app.component';
+import { OthelloComponent } from './components/othello/othello.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 	declarations: [
 		AppComponent,
 		// NgbDropdown,
+		OthelloComponent,
 		PieChartComponent
 	],
 	providers: [
@@ -48,7 +50,6 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 		// HttpJsonClientService,
 		// etc.
 	],
-	// bootstrap: [AppComponent]
-	bootstrap: [PieChartComponent]
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

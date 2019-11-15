@@ -1,74 +1,17 @@
-<main>
-	<!-- <div class="d-flex" [ngClass]="toggleStatus ? 'toggled' : ''" id="wrapper"> -->
-	<div class="d-flex" id="wrapper">
+<div class="container-fluid centre">
+	<h1 class="mt-4">Pie Chart</h1>
+	<br />
 
-		<!-- Sidebar -->
-		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading">Sidebar Header </div>
-			<div class="list-group list-group-flush">
-				<a href="#" class="list-group-item list-group-item-action bg-light">Sidebar Item 1</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Sidebar Item 2</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Sidebar Item 3</a>
-			</div>
-		</div>
-		<!-- /#sidebar-wrapper -->
-
-		<!-- Page Content -->
-		<div id="page-content-wrapper">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-				<button class="btn btn-primary" id="menu-toggle" (click)="menuToggle()">Toggle Sidebar</button>
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-						<li class="nav-item active">
-							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Link 1</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Link 2</a>
-						</li>
-						<li class="nav-item dropdown">
-							<!-- ThAW 2019-07-16 : CSS for this li: display: list-item; -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Dropdown
-							</a>
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Action 1</a>
-								<a class="dropdown-item" href="#">Action 2</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Action 3</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</nav>
-
-			<div class="container-fluid contentFoo">
-				<h1 class="mt-4">Pie Chart</h1>
-				<br />
-
-				<div style="display: block">
-					<canvas baseChart
-						[data]="chartData"
-						[labels]="chartLabels"
-						chartType="pie"
-						(chartHover)="chartHovered($event)"
-						(chartClick)="chartClicked($event)">
-					</canvas>
-				</div>
-				<br />
-
-				<button type="button" (click)="onClickGoToPieChart()">Pie Chart</button>
-			</div>
-		</div>
-		<!-- /#page-content-wrapper -->
-
+	<div style="display: block">
+		<canvas baseChart class="centre"
+			[data]="chartData"
+			[labels]="chartLabels"
+			chartType="pie"
+			(chartHover)="chartHovered($event)"
+			(chartClick)="chartClicked($event)">
+		</canvas>
 	</div>
-	<!-- /#wrapper -->
-</main>
+	<br />
+
+	<button type="button" (click)="onClickGoToOthello()">Othello</button>
+</div>

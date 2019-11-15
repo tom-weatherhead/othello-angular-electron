@@ -1,16 +1,16 @@
-// othello-angular-electron/src/app/components/app/app.component.ts
+// othello-angular-electron/src/app/components/othello/othello.component.ts
 
 import {
 	// AfterViewChecked,
 	// AfterViewInit,
 	// ChangeDetectorRef,
-	Component //,
-	// ElementRef,
-	// OnInit,
-	// ViewChild
+	Component,
+	ElementRef,
+	OnInit,
+	ViewChild
 } from '@angular/core';
 
-// import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
+import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 // import { Location }                         from '@angular/common';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,16 +40,15 @@ const colourGold = '#d4af37';
 // const colourGold = '#ffd700';
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	selector: 'othello',
+	templateUrl: './othello.component.html',
+	styleUrls: ['./othello.component.scss']
 })
 // export class AppComponent implements AfterViewChecked, AfterViewInit, OnInit {
-export class AppComponent {
-	// @ViewChild('canvas', { static: true })
-	// canvas: ElementRef<HTMLCanvasElement>;
+export class OthelloComponent implements OnInit {
+	@ViewChild('canvas', { static: true })
+	canvas: ElementRef<HTMLCanvasElement>;
 
-	/*
 	board: string[][]; // Model
 	gameState: any; // Model
 	context: CanvasRenderingContext2D; // View
@@ -84,22 +83,18 @@ export class AppComponent {
 
 	messageInPlyDDL: string = "Ply: 5";
 	optionsInPlyDDL: number[] = [4, 5, 6];
-	 */
-
-	toggleStatus: boolean = false;
 
 	// constructor(private cd: ChangeDetectorRef) {
-	// constructor(private changeDetectorRef: ChangeDetectorRef,
-	// 	private route: ActivatedRoute,
-	// 	private router: Router,
-	// 	private location: Location) {
-	constructor() {
+	// constructor() {
+	constructor(// private changeDetectorRef: ChangeDetectorRef,
+		// private route: ActivatedRoute,
+		private router: Router /*,
+		private location: Location */) {
 	}
 
-	/*
 	ngOnInit() {
-		// this.context = this.canvas.nativeElement.getContext('2d');
-		// this.onNewGame();
+		this.context = this.canvas.nativeElement.getContext('2d');
+		this.onNewGame();
 	}
 
 	// ngAfterViewInit() {
@@ -287,13 +282,8 @@ export class AppComponent {
 	onClickNewGame() {
 		this.onNewGame();
 	}
-	 */
 
-	menuToggle() {
-		this.toggleStatus = !this.toggleStatus;
+	public onClickGoToPieChart(): void  {
+		this.router.navigate(['/pie-chart']);
 	}
-
-	// public onClickGoToPieChart(): void  {
-	// 	this.router.navigate(['/pie-chart']);
-	// }
 }

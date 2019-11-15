@@ -1,0 +1,36 @@
+body {
+	overflow-x: hidden;
+}
+
+.contentFoo {
+	text-align: center;
+	/* padding: 50px; */
+	margin: auto;
+}
+
+.contentFoo table {
+    margin-left: auto;          /* This line and the next are from http://www.granneman.com/webdev/coding/css/centertables/ ; they centre the table. */
+    margin-right: auto;
+    border-collapse: collapse;  /* Or border-spacing: 0px; this helps to eliminate space in the table. */
+}
+
+.contentFoo td {
+	width: 50px;
+	height: 50px;
+}
+
+.contentFoo tr, .contentFoo td {
+	padding: 0;
+	margin: 0;
+}
+
+.contentFoo table img, .contentFoo table canvas {
+	display: block;             /* To eliminate space below the image.  See http://www.loriswebs.com/html-tips/form-button.html . */
+}
+
+/* .app {
+	display: block;
+	text-align: center;
+	padding: 25px;
+	background: #f5f5f5;
+} */

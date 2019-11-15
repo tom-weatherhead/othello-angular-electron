@@ -12,12 +12,11 @@ import {
 } from '@angular/core';
  */
 import { Component, ChangeDetectorRef, OnInit }     from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 import { Location }                         from '@angular/common';
 
 @Component({
-	// selector: 'pie-chart',
-	selector: 'app-root',
+	selector: 'pie-chart',
 	templateUrl: './pie-chart.component.html',
 	styleUrls: ['./pie-chart.component.scss']
 })
@@ -28,10 +27,10 @@ export class PieChartComponent implements OnInit {
 	public chartType: string;
 	public chartLegend: boolean = true;
 	public chartData: any[];
-	toggleStatus: boolean = false;
+	// toggleStatus: boolean = false;
 
 	constructor(private changeDetectorRef: ChangeDetectorRef,
-		private route: ActivatedRoute,
+		// private route: ActivatedRoute,
 		private router: Router,
 		private location: Location
 	) {
@@ -103,9 +102,9 @@ export class PieChartComponent implements OnInit {
 
 	// Events:
 
-	public goToChart(chartID: number): void {
-		this.router.navigate(['/charts', chartID]);
-	}
+	// public goToChart(chartID: number): void {
+	// 	this.router.navigate(['/charts', chartID]);
+	// }
 
 	public chartClicked(e: any): void {
 		console.log(e);
@@ -120,24 +119,28 @@ export class PieChartComponent implements OnInit {
 		console.log(e);
 	}
 
-	public randomize(): void {
-		// Only Change 3 values
-		let data = [
-		Math.round(Math.random() * 100),
-		59,
-		80,
-		(Math.random() * 100),
-		56,
-		(Math.random() * 100),
-		40];
-		let clone = JSON.parse(JSON.stringify(this.chartData));
-		clone[0].data = data;
-		this.chartData = clone;
-		/**
-		* (My guess), for Angular to recognize the change in the dataset
-		* it has to change the dataset variable directly,
-		* so one way around it, is to clone the data, change it and then
-		* assign it;
-		*/
+	// public randomize(): void {
+	// 	// Only Change 3 values
+	// 	let data = [
+	// 	Math.round(Math.random() * 100),
+	// 	59,
+	// 	80,
+	// 	(Math.random() * 100),
+	// 	56,
+	// 	(Math.random() * 100),
+	// 	40];
+	// 	let clone = JSON.parse(JSON.stringify(this.chartData));
+	// 	clone[0].data = data;
+	// 	this.chartData = clone;
+	// 	/**
+	// 	* (My guess), for Angular to recognize the change in the dataset
+	// 	* it has to change the dataset variable directly,
+	// 	* so one way around it, is to clone the data, change it and then
+	// 	* assign it;
+	// 	*/
+	// }
+
+	public onClickGoToOthello(): void {
+		this.router.navigate(['/othello']);
 	}
 }
