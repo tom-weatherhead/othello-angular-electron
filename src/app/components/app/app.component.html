@@ -5,9 +5,9 @@
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading">Sidebar Header </div>
 			<div class="list-group list-group-flush">
-				<a href="#" class="list-group-item list-group-item-action bg-light">Sidebar Item 1</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Sidebar Item 2</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Sidebar Item 3</a>
+				<a routerLink="/" href="#" class="list-group-item list-group-item-action bg-light">Home</a>
+				<a routerLink="/bar-chart" href="#" class="list-group-item list-group-item-action bg-light">Bar Chart</a>
+				<a routerLink="/pie-chart" href="#" class="list-group-item list-group-item-action bg-light">Pie Chart</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -24,13 +24,13 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 						<li class="nav-item active">
-							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							<a class="nav-link" routerLink="/" href="#">Home <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Link 1</a>
+							<a class="nav-link" routerLink="/bar-chart" href="#">Bar Chart</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Link 2</a>
+							<a class="nav-link" routerLink="/pie-chart" href="#">Pie Chart</a>
 						</li>
 						<li class="nav-item dropdown">
 							<!-- ThAW 2019-07-16 : CSS for this li: display: list-item; -->
@@ -38,10 +38,10 @@
 								Dropdown
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Action 1</a>
-								<a class="dropdown-item" href="#">Action 2</a>
+								<a class="dropdown-item" routerLink="/" href="#">Home</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Action 3</a>
+								<a class="dropdown-item" routerLink="/bar-chart" href="#">Bar Chart</a>
+								<a class="dropdown-item" routerLink="/pie-chart" href="#">Pie Chart</a>
 							</div>
 						</li>
 					</ul>
