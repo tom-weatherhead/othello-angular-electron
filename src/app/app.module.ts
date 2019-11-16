@@ -11,6 +11,13 @@ import {
 	ReactiveFormsModule
 } from '@angular/forms';
 
+/*
+import {
+	RouterModule
+	// , Routes
+} from '@angular/router';
+ */
+
 import {
 	NgbModule //,
 	// NgbDropdownModule,
@@ -19,7 +26,7 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { ChartsModule }						from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './components/app/app.component';
 import { OthelloComponent } from './components/othello/othello.component';
@@ -32,6 +39,9 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 		BrowserModule,
 		FormsModule,
 		// HttpClientModule,
+
+		// RouterModule.forRoot(appRoutes),
+		// RouterModule,
 
 		ReactiveFormsModule,
 		// JsonpModule,

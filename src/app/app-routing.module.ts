@@ -1,12 +1,12 @@
 // othello-angular-electron/src/app/app-routing.module.ts
 
-import { NgModule }							from '@angular/core';
-import { RouterModule, Routes }				from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent }						from './components/app/app.component';
-import { OthelloComponent }					from './components/othello/othello.component';
-import { PieChartComponent }				from './components/pie-chart/pie-chart.component';
-import { BarChartComponent }				from './components/bar-chart/bar-chart.component';
+import { AppComponent } from './components/app/app.component';
+import { OthelloComponent } from './components/othello/othello.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/othello', pathMatch: 'full' },
