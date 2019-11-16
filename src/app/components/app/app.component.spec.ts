@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+// RouterTestingModule : See https://stackoverflow.com/questions/41252496/router-outlet-is-not-a-known-element
 import { RouterTestingModule } from '@angular/router/testing';
 
 import {

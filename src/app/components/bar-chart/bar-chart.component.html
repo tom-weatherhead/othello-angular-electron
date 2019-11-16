@@ -3,12 +3,16 @@
 	<br />
 
 	<div style="display: block">
+		<!--
 		<canvas baseChart class="centre"
 			[data]="chartData"
 			[labels]="chartLabels"
 			chartType="bar"
 			(chartHover)="chartHovered($event)"
 			(chartClick)="chartClicked($event)">
+		</canvas>
+		-->
+		<canvas #canvas width="400" height="400" class="centre">
 		</canvas>
 	</div>
 	<br />
