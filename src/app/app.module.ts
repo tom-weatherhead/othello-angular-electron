@@ -17,6 +17,8 @@ import {
 	// NgbDropdown
 } from '@ng-bootstrap/ng-bootstrap';
 
+import { PieChartCanvasModule } from 'thaw-angular-component-library';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './components/app/app.component';
@@ -35,12 +37,15 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 		// JsonpModule,
 		// NgbModule.forRoot()
 
-		NgbModule
+		NgbModule,
 		// NgbDropdownModule
+
+		PieChartCanvasModule
 	],
 	declarations: [
 		AppComponent,
 		// NgbDropdown,
+		// PieChartComponent,
 		OthelloComponent,
 		PieChartComponent,
 		BarChartComponent
