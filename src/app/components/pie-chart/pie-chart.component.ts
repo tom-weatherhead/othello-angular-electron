@@ -5,21 +5,16 @@ import {
 	AfterViewInit,
 	// ChangeDetectorRef,
 	Component,
-	ElementRef,
-	OnInit,
+	// ElementRef,
+	// OnInit,
 	ViewChild
 } from '@angular/core';
-// import { Component, ChangeDetectorRef, OnInit }     from '@angular/core';
 import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 import { Location }                         from '@angular/common';
 
 // import { BorderWidth, Chart, Point, ChartColor } from 'chart.js';
-// import { Chart } from 'chart.js';
 
 import { PieChartCanvasComponent } from 'thaw-angular-component-library';
-// import { PieChartCanvasComponent } from 'PieChartCanvasModule';
-// import { ea as PieChartCanvasComponent } from 'thaw-angular-component-library';
-// import { PieChartCanvasModule } from 'thaw-angular-component-library';
 
 @Component({
 	selector: 'pie-chart',
@@ -27,10 +22,7 @@ import { PieChartCanvasComponent } from 'thaw-angular-component-library';
 	// styleUrls: ['./pie-chart.component.scss']
 })
 // export class PieChartComponent implements AfterViewChecked, AfterViewInit, OnInit {
-export class PieChartComponent implements AfterViewInit, OnInit {
-	// @ViewChild('canvas', { static: true })
-	// canvas: ElementRef<HTMLCanvasElement>;
-
+export class PieChartComponent implements AfterViewInit {
 	@ViewChild('pieChart', { static: false })
 	pieChart: PieChartCanvasComponent;
 
@@ -41,19 +33,10 @@ export class PieChartComponent implements AfterViewInit, OnInit {
 	) {
 	}
 
-	ngOnInit() {
-		// this.context = this.canvas.nativeElement.getContext('2d');
-
-		// this.displayChart();
-
-		// TODO: this.pieChart.displayChart();
-		// this.pieChart.displayChart();
-		// this.pieChart.nativeElement.displayChart();
-	}
+	// ngOnInit() {
+	// }
 
 	ngAfterViewInit() {
-		// console.log(this.child.whoAmI());
-		//this.pieChart.displayChart();
 		console.log('this.pieChart is', typeof this.pieChart, this.pieChart);
 		this.pieChart.sayHi();
 	}

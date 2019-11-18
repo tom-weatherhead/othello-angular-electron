@@ -5,21 +5,16 @@ import {
 	AfterViewInit,
 	// ChangeDetectorRef,
 	Component,
-	ElementRef,
-	OnInit,
+	// ElementRef,
+	// OnInit,
 	ViewChild
 } from '@angular/core';
-// import { Component, ChangeDetectorRef, OnInit }     from '@angular/core';
 import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 import { Location }                         from '@angular/common';
 
 // import { BorderWidth, Chart, Point, ChartColor } from 'chart.js';
-// import { Chart } from 'chart.js';
 
 import { BarChartCanvasComponent } from 'thaw-angular-component-library';
-// import { BarChartCanvasComponent } from 'BarChartCanvasModule';
-// import { ea as BarChartCanvasComponent } from 'thaw-angular-component-library';
-// import { BarChartCanvasModule } from 'thaw-angular-component-library';
 
 @Component({
 	selector: 'bar-chart',
@@ -27,10 +22,7 @@ import { BarChartCanvasComponent } from 'thaw-angular-component-library';
 	// styleUrls: ['./bar-chart.component.scss']
 })
 // export class BarChartComponent implements AfterViewChecked, AfterViewInit, OnInit {
-export class BarChartComponent implements AfterViewInit, OnInit {
-	// @ViewChild('canvas', { static: true })
-	// canvas: ElementRef<HTMLCanvasElement>;
-
+export class BarChartComponent implements AfterViewInit {
 	@ViewChild('barChart', { static: false })
 	barChart: BarChartCanvasComponent;
 
@@ -41,19 +33,10 @@ export class BarChartComponent implements AfterViewInit, OnInit {
 	) {
 	}
 
-	ngOnInit() {
-		// this.context = this.canvas.nativeElement.getContext('2d');
-
-		// this.displayChart();
-
-		// TODO: this.barChart.displayChart();
-		// this.barChart.displayChart();
-		// this.barChart.nativeElement.displayChart();
-	}
+	// ngOnInit() {
+	// }
 
 	ngAfterViewInit() {
-		// console.log(this.child.whoAmI());
-		//this.barChart.displayChart();
 		console.log('this.barChart is', typeof this.barChart, this.barChart);
 		this.barChart.sayHi();
 	}
