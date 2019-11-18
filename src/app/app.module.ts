@@ -17,7 +17,7 @@ import {
 	// NgbDropdown
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { PieChartCanvasModule } from 'thaw-angular-component-library';
+import { BarChartCanvasModule, PieChartCanvasModule } from 'thaw-angular-component-library';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -40,6 +40,7 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 		NgbModule,
 		// NgbDropdownModule
 
+		BarChartCanvasModule,
 		PieChartCanvasModule
 	],
 	declarations: [
