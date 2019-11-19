@@ -22,7 +22,7 @@ install:
   - npm install
 before_script:
   - webdriver-manager clean
-  - webdriver-manager update --versions.chrome=78.0.3904.70
+  - webdriver-manager update --versions.chrome=78.0.3904.105
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build

@@ -24,6 +24,7 @@
 		"electron-with-gpu": "electron .",
 		"electron-without-gpu": "electron --disable-gpu .",
 		"lint": "tslint ./src/**/*.ts -t verbose -p tsconfig.app.json -c tslint.json",
+		"lintx": "ng lint",
 		"unittests": "ng test --code-coverage",
 		"unittests-headless": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
 		"e2e": "ng e2e",
