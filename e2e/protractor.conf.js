@@ -14,7 +14,7 @@ exports.config = {
 	],
 	capabilities: {
 		'browserName': 'chrome',
-		chromeDriver: './node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_78.0.3904.105',
+		// chromeDriver: './node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_78.0.3904.105',
 		chromeOptions: {
 			args: [
 				'--disable-dev-shm-usage',
