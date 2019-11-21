@@ -16,7 +16,13 @@ exports.config = {
 		'browserName': 'chrome',
 		chromeDriver: './node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_78.0.3904.105',
 		chromeOptions: {
-			args: ['--headless', '--disable-gpu', '--window-size=1024,768', '--no-sandbox']
+			args: [
+				'--disable-dev-shm-usage',
+				'--disable-gpu',
+				'--headless',
+				'--no-sandbox',
+				'--window-size=1024,768'
+			]
 		}
 	},
 	directConnect: true,
