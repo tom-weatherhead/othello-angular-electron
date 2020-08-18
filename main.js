@@ -1,7 +1,16 @@
 // othello-angular-electron/main.js
 
+// const fs = require('fs');
 const os = require('os');
-const { app, BrowserWindow, Tray } = require('electron');
+
+const { app, BrowserWindow, ipcMain, Tray } = require('electron');
+
+const platform = os.platform(); // TODO? : Use process.platform instead?
+const isPlatformWindows = platform === 'win32';
+const isPlatformMac = platform === 'darwin';
+// const isPlatformLinux = platform === 'linux';
+
+const screen = !isPlatformWindows && require('electron').screen;
 
 const browserWindowWidth = 992;
 const browserWindowHeight = 750;
@@ -13,24 +22,53 @@ const browserWindowHeight = 750;
 
 let win;
 
-function isPlatformWindows () {
-	return os.platform() === 'win32';
-}
+// function isPlatformWindows () {
+// 	return os.platform() === 'win32';
+// }
 
 function createWindow () {
-	const faviconFilename = isPlatformWindows() ? 'favicon.ico' : 'favicon.png';
+	const faviconFilename = isPlatformWindows ? 'favicon.ico' : 'favicon.png';
 	const tray = new Tray('./dist/assets/' + faviconFilename);
 
 	// Create the browser window.
-	win = new BrowserWindow({
-		width: browserWindowWidth,
-		height: browserWindowHeight,
+	// win = new BrowserWindow({
+	// 	width: browserWindowWidth,
+	// 	height: browserWindowHeight,
+	// 	backgroundColor: '#ffffff',
+	// 	icon: 'assets/' + faviconFilename,
+	// 	webPreferences: {
+	// 		nodeIntegration: true
+	// 	}
+	// });
+
+	let browserWindowConfig = {
 		backgroundColor: '#ffffff',
-		icon: 'assets/' + faviconFilename,
+		// backgroundColor: '#7851a9', // From the TouchBar button
+		// icon: 'assets/favicon.png',
+		// icon: faviconFilePath, // ThAW: Does this have any effect?
+		title: 'Othello',
+		worldSafeExecuteJavaScript: true,
 		webPreferences: {
-			nodeIntegration: true
+			nodeIntegration: true //,
+			// preload: '/absolute/path/to/some/preload.js'
+			// preload: `${__dirname}/preload.js`
 		}
-	});
+	};
+
+	if (isPlatformWindows) {
+		browserWindowConfig.width = browserWindowWidth;
+		browserWindowConfig.height = browserWindowHeight;
+	} else {
+		const primaryDisplayWorkArea = screen.getPrimaryDisplay().workArea;
+
+		browserWindowConfig.x = primaryDisplayWorkArea.x;
+		browserWindowConfig.y = primaryDisplayWorkArea.y;
+		browserWindowConfig.width = primaryDisplayWorkArea.width;
+		browserWindowConfig.height = primaryDisplayWorkArea.height;
+	}
+
+	// Create the browser window.
+	win = new BrowserWindow(browserWindowConfig);
 
 	win.loadFile('dist/index.html');
 

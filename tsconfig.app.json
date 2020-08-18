@@ -1,19 +1,32 @@
 {
-	"compileOnSave": false,
+	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"outDir": "./dist/out-tsc",
-		"sourceMap": true,
-		"declaration": false,
-		"moduleResolution": "node",
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"target": "es5",
-		"typeRoots": [
-			"node_modules/@types"
-		],
-		"lib": [
-			"es2017",
-			"dom"
+		"outDir": "./out-tsc/app",
+		"types": [
+			"node"
 		]
-	}
+	},
+	"files": [
+		"src/main.ts",
+		"src/polyfills.ts"
+	],
+	"include": [
+		"src/**/*.d.ts"
+	],
+	"exclude": [
+		"src/test.ts",
+		"src/**/*.spec.ts",
+		"src/**/*-specs.ts",
+		"src/**/*.avoid.ts",
+		"src/**/*.0.ts",
+		"src/**/*.1.ts",
+		"src/**/*.1b.ts",
+		"src/**/*.2.ts",
+		"src/**/*.3.ts",
+		"src/**/*.4.ts",
+		"src/**/*.5.ts",
+		"src/**/*.6.ts",
+		"src/**/*.7.ts",
+		"src/**/testing"
+	]
 }
