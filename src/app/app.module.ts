@@ -62,4 +62,4 @@ import { OthelloComponent } from './components/othello/othello.component';
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

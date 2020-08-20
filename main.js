@@ -26,7 +26,7 @@ let win;
 // 	return os.platform() === 'win32';
 // }
 
-function createWindow () {
+function createWindow() {
 	const faviconFilename = isPlatformWindows ? 'favicon.ico' : 'favicon.png';
 	const tray = new Tray('./dist/assets/' + faviconFilename);
 
@@ -86,7 +86,6 @@ function createWindow () {
 		// win.webContents.setIgnoreMenuShortcuts(!input.control && !input.meta)
 
 		if (input && input.code) {
-
 			switch (input.code) {
 				case 'F5':
 					win.webContents.reload();
@@ -112,7 +111,6 @@ function createWindow () {
 app.on('ready', createWindow);
 
 app.on('activate', () => {
-
 	if (!win) {
 		createWindow();
 	}
@@ -120,7 +118,6 @@ app.on('activate', () => {
 
 // Terminate the app when all windows are closed.
 app.on('window-all-closed', () => {
-
 	// On macOS specific close process
 	if (process.platform !== 'darwin') {
 		app.quit();
