@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
 // @import '../node_modules/bulma/bulma';
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+// Note: The Bootstrap CSS is included via angular.json; see the README for the ng-bootstrap package.
+// @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .centre {
 	text-align: center;

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+// import { NgModule } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +28,7 @@ describe('AppComponent', () => {
 			imports: [
 				BrowserModule,
 				// HttpClientModule,
-				FormsModule,	// For e.g. NgModel
+				FormsModule, // For e.g. NgModel
 				ReactiveFormsModule,
 				RouterTestingModule,
 				// JsonpModule,
@@ -36,9 +36,7 @@ describe('AppComponent', () => {
 				NgbModule
 				// NgbDropdownModule
 			],
-			declarations: [
-				AppComponent
-			]
+			declarations: [AppComponent]
 		}).compileComponents();
 	}));
 
