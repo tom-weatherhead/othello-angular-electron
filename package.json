@@ -44,7 +44,7 @@
 		"@angular/router": "^8.2.14",
 		"@ng-bootstrap/ng-bootstrap": "^5.1.4",
 		"bootstrap": "^4.3.1",
-		"electron": "^8.3.1",
+		"electron": "^7.2.4",
 		"jquery": "^3.4.1",
 		"node-sass": "^4.13.1",
 		"popper.js": "^1.16.0",
