@@ -27,20 +27,20 @@ import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 import * as gameEngine from 'thaw-reversi-engine';
 import * as commonUtils from 'thaw-common-utilities.js';
 
-const boardWidth: number = 8;
-const boardHeight: number = boardWidth;
+const boardWidth = 8;
+const boardHeight = boardWidth;
 
-const boardSquareWidth: number = 50;
-const boardSquareHeight: number = boardSquareWidth;
+const boardSquareWidth = 50;
+const boardSquareHeight = boardSquareWidth;
 
-const colourWhite: string = '#ffffff';
-const colourBlack: string = '#000000';
-const colourGrey: string = '#7f7f7f';
+const colourWhite = '#ffffff';
+const colourBlack = '#000000';
+const colourGrey = '#7f7f7f';
 const colourGold = '#d4af37';
 // const colourGold = '#ffd700';
 
 @Component({
-	selector: 'othello',
+	selector: 'app-othello',
 	templateUrl: './othello.component.html',
 	styleUrls: ['./othello.component.scss']
 })
@@ -59,38 +59,38 @@ export class OthelloComponent implements OnInit {
 		' ': 'Empty'
 	};
 	mapPlayerColourNameToBoolean = {
-		'Black': false,
-		'White': true
+		Black: false,
+		White: true
 	};
 	automaticMove: any = {
-		'X': false,
-		// 'X': true,
-		'O': true
+		X: false,
+		O: true
 	};
 	playerPly: any = {
-		'X': 5,
-		'O': 5
+		X: 5,
+		O: 5
 	};
 	populations: any = {
-		'X': 2,
-		'O': 2
+		X: 2,
+		O: 2
 	};
 	lastMoveWasInvalid: boolean;
 	isGameOver: boolean;
-	showMessage: boolean = false;
-	message: string = '';
-	doOneAutomove: boolean = false;
+	showMessage = false;
+	message = '';
+	doOneAutomove = false;
 
-	messageInPlyDDL: string = "Ply: 5";
-	optionsInPlyDDL: number[] = [4, 5, 6];
+	messageInPlyDDL = 'Ply: 5';
+	optionsInPlyDDL = [4, 5, 6];
 
 	// constructor(private cd: ChangeDetectorRef) {
 	// constructor() {
-	constructor(// private changeDetectorRef: ChangeDetectorRef,
+	constructor(
+		// private changeDetectorRef: ChangeDetectorRef,
 		// private route: ActivatedRoute,
 		private router: Router /*,
-		private location: Location */) {
-	}
+		private location: Location */
+	) {}
 
 	ngOnInit() {
 		this.context = this.canvas.nativeElement.getContext('2d');
@@ -103,13 +103,13 @@ export class OthelloComponent implements OnInit {
 	// ngAfterViewChecked() {
 	// }
 
-	changeMessageInPlyDDL(selectedPly: number){
+	changeMessageInPlyDDL(selectedPly: number) {
 		this.messageInPlyDDL = `Ply: ${selectedPly}`;
 		this.playerPly.X = selectedPly;
 		this.playerPly.O = selectedPly;
 	}
 
-	displayMessage (message: string) {
+	displayMessage(message: string) {
 		this.message = message;
 		this.showMessage = !!message; // or message && message.length;
 	}
@@ -119,12 +119,17 @@ export class OthelloComponent implements OnInit {
 		// in order to ensure that no artifacts are visible when (most of) the pieces are removed.
 
 		// Test 1:
-		this.canvas.nativeElement.width = this.canvas.nativeElement.width;
+		// this.canvas.nativeElement.width = this.canvas.nativeElement.width;
 
 		// Test 2:
 		this.context.fillStyle = colourGold;
-		this.context.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-		this.context.stroke();	// Actually draw the shapes that are described above.
+		this.context.fillRect(
+			0,
+			0,
+			this.canvas.nativeElement.width,
+			this.canvas.nativeElement.height
+		);
+		this.context.stroke(); // Actually draw the shapes that are described above.
 	}
 
 	onNewGame() {
@@ -147,44 +152,68 @@ export class OthelloComponent implements OnInit {
 
 		// Draw the square's border.
 		this.context.fillStyle = colourGold;
-		this.context.fillRect(xOffset, yOffset, boardSquareWidth, boardSquareHeight);
+		this.context.fillRect(
+			xOffset,
+			yOffset,
+			boardSquareWidth,
+			boardSquareHeight
+		);
 
 		// Fill the interior of the square.
 		this.context.fillStyle = colourGrey;
-		this.context.fillRect(xOffset + 2, yOffset + 2, boardSquareWidth - 2 * squareBorderThickness, boardSquareHeight - 2 * squareBorderThickness);
+		this.context.fillRect(
+			xOffset + 2,
+			yOffset + 2,
+			boardSquareWidth - 2 * squareBorderThickness,
+			boardSquareHeight - 2 * squareBorderThickness
+		);
 
 		if (isWhite === true || isWhite === false) {
 			const centerX = boardSquareWidth / 2;
 			const centerY = boardSquareHeight / 2;
-			const radius = Math.floor(boardSquareWidth * 2 / 5);
+			const radius = Math.floor((boardSquareWidth * 2) / 5);
 			const fillColour = isWhite ? colourWhite : colourBlack;
 
 			this.context.beginPath();
-			this.context.arc(xOffset + centerX, yOffset + centerY, radius, 0, 2 * Math.PI, false);
+			this.context.arc(
+				xOffset + centerX,
+				yOffset + centerY,
+				radius,
+				0,
+				2 * Math.PI,
+				false
+			);
 			this.context.fillStyle = fillColour;
 			this.context.strokeStyle = fillColour;
 			this.context.fill();
 		}
 
-		this.context.stroke();	// Actually draw the shapes that are described above.
+		this.context.stroke(); // Actually draw the shapes that are described above.
 	}
 
 	updateBoardFromGameState() {
-
 		if (!this.board) {
-			this.board = commonUtils.createAndFillArray('', boardHeight, boardWidth);
+			this.board = commonUtils.createAndFillArray(
+				'',
+				boardHeight,
+				boardWidth
+			);
 		}
 
 		for (let row = 0; row < this.board.length; row++) {
-
 			for (let col = 0; col < this.board[row].length; col++) {
 				const currentColourName = this.board[row][col];
-				const newColourName = this.mapTokenCharToPlayerColourName[this.gameState.boardAsString[row * this.board[row].length + col]];;
+				const newColourName = this.mapTokenCharToPlayerColourName[
+					this.gameState.boardAsString[
+						row * this.board[row].length + col
+					]
+				];
 
 				if (newColourName !== currentColourName) {
 					this.board[row][col] = newColourName;
 					this.renderSquareOnBoard(
-						row, col,
+						row,
+						col,
 						this.mapPlayerColourNameToBoolean[newColourName]
 					);
 				}
@@ -195,12 +224,10 @@ export class OthelloComponent implements OnInit {
 		this.populations.O = this.gameState.populations.O;
 	}
 
-	update_IsGameOver () {
-
+	update_IsGameOver() {
 		if (this.gameState.isGameOver) {
 			this.isGameOver = true;
 		} else if (this.gameState.numPiecesFlippedInLastMove === 0) {
-
 			if (this.lastMoveWasInvalid) {
 				this.isGameOver = true;
 			} else {
@@ -215,7 +242,8 @@ export class OthelloComponent implements OnInit {
 			console.log('X population:', this.gameState.populations.X);
 			console.log('O population:', this.gameState.populations.O);
 
-			const diff = this.gameState.populations.X - this.gameState.populations.O;
+			const diff =
+				this.gameState.populations.X - this.gameState.populations.O;
 			let message;
 
 			if (diff > 0) {
@@ -236,13 +264,21 @@ export class OthelloComponent implements OnInit {
 	onAutomaticMove() {
 		let player = this.gameState.player;
 
-		if (!this.gameState.isGameOver && (this.automaticMove[player] || this.doOneAutomove)) {
+		if (
+			!this.gameState.isGameOver &&
+			(this.automaticMove[player] || this.doOneAutomove)
+		) {
 			this.doOneAutomove = false;
 
 			const maxPly = this.playerPly[player];
-			const moveResult = gameEngine.moveAutomatically(this.gameState, maxPly);
+			const moveResult = gameEngine.moveAutomatically(
+				this.gameState,
+				maxPly
+			);
 
-			console.log(`Auto: ${moveResult.gameState.player} moved at row ${moveResult.bestRow}, column ${moveResult.bestColumn}`);
+			console.log(
+				`Auto: ${moveResult.gameState.player} moved at row ${moveResult.bestRow}, column ${moveResult.bestColumn}`
+			);
 			this.gameState = moveResult.gameState;
 			this.updateBoardFromGameState();
 			this.update_IsGameOver();
@@ -259,13 +295,17 @@ export class OthelloComponent implements OnInit {
 		const col = Math.floor(event.offsetX / boardSquareWidth);
 
 		if (row < 0 || row >= boardHeight || col < 0 || col >= boardWidth) {
-			console.error(`Error in onClickCanvas() : row is ${row}; col is ${col}`);
+			console.error(
+				`Error in onClickCanvas() : row is ${row}; col is ${col}`
+			);
 			console.error('  Error in onClickCanvas() : event is', event);
 
 			return;
 		}
 
-		console.log(`Manual: ${this.gameState.player} moved at row ${row}, column ${col}`);
+		console.log(
+			`Manual: ${this.gameState.player} moved at row ${row}, column ${col}`
+		);
 		this.gameState = gameEngine.moveManually(this.gameState, row, col);
 		this.updateBoardFromGameState();
 
@@ -283,7 +323,7 @@ export class OthelloComponent implements OnInit {
 		this.onNewGame();
 	}
 
-	public onClickGoToPieChart(): void  {
+	public onClickGoToPieChart(): void {
 		this.router.navigate(['/pie-chart']);
 	}
 }
