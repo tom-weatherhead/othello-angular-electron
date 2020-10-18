@@ -8,17 +8,17 @@
 		<br />
 	</div>
 
-	<button type="button" (click)="onClickOneAutomove()">One automove</button>
-	<button type="button" (click)="onClickNewGame()">New game</button>
+	<button type="button" class="btn btn-primary" (click)="onClickOneAutomove()">One automove</button>
+	<button type="button" class="btn btn-primary" (click)="onClickNewGame()">New game</button>
 	<br />
 
 	<label>X: pop {{populations.X}};&nbsp;</label>
-	<label class="btn-primary" ngbButtonLabel>
+	<label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.X"> automove
 	</label>
 
 	<label>&nbsp;&nbsp; O: pop {{populations.O}};&nbsp;</label>
-	<label class="btn-primary" ngbButtonLabel>
+	<label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.O"> automove
 	</label>
 	<br />
