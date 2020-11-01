@@ -1,55 +1,59 @@
 // othello-angular-electron/src/app/app.module.ts
 
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 // import { HttpClientModule } from '@angular/common/http';
 
 // FormsModule must be present in order for ngModel to work.
 // See https://stackoverflow.com/questions/43298011/angular-4-cant-bind-to-ngmodel-since-it-isnt-a-known-property-of-input
 import {
-	FormsModule,
-	ReactiveFormsModule
+	FormsModule // ,
+	// ReactiveFormsModule
 } from '@angular/forms';
 
 import {
-	NgbModule //,
-	// NgbDropdownModule,
+	// NgbModule //,
+	NgbButtonsModule,
+	NgbDropdownModule // ,
 	// NgbDropdown
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { BarChartCanvasModule, PieChartCanvasModule } from 'thaw-angular-component-library';
+// import { BarChartCanvasModule, PieChartCanvasModule } from 'thaw-angular-component-library';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './components/app/app.component';
 import { OthelloComponent } from './components/othello/othello.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
-import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+// import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+// import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
+		CommonModule,
 		FormsModule,
 		// HttpClientModule,
 
-		ReactiveFormsModule,
+		// ReactiveFormsModule,
 		// JsonpModule,
 		// NgbModule.forRoot()
 
-		NgbModule,
+		NgbButtonsModule,
+		NgbDropdownModule // ,
 		// NgbDropdownModule
 
-		BarChartCanvasModule,
-		PieChartCanvasModule
+		// BarChartCanvasModule,
+		// PieChartCanvasModule
 	],
 	declarations: [
 		AppComponent,
 		// NgbDropdown,
 		// PieChartComponent,
-		OthelloComponent,
-		PieChartComponent,
-		BarChartComponent
+		OthelloComponent //,
+		// PieChartComponent,
+		// BarChartComponent
 	],
 	providers: [
 		// ConfigService,
@@ -58,4 +62,4 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

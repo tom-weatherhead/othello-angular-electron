@@ -1,54 +1,54 @@
 // othello-angular-electron/src/app/components/pie-chart/pie-chart.component.ts
 
-import {
-	// AfterViewChecked,
-	AfterViewInit,
-	// ChangeDetectorRef,
-	Component,
-	// ElementRef,
-	// OnInit,
-	ViewChild
-} from '@angular/core';
-import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
-import { Location }                         from '@angular/common';
+// import {
+// 	// AfterViewChecked,
+// 	AfterViewInit,
+// 	// ChangeDetectorRef,
+// 	Component,
+// 	// ElementRef,
+// 	// OnInit,
+// 	ViewChild
+// } from '@angular/core';
+// import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
+// import { Location }                         from '@angular/common';
 
-// import { BorderWidth, Chart, Point, ChartColor } from 'chart.js';
+// // import { BorderWidth, Chart, Point, ChartColor } from 'chart.js';
 
-import { PieChartCanvasComponent } from 'thaw-angular-component-library';
+// import { PieChartCanvasComponent } from 'thaw-angular-component-library';
 
-@Component({
-	selector: 'pie-chart',
-	templateUrl: './pie-chart.component.html' //,
-	// styleUrls: ['./pie-chart.component.scss']
-})
-// export class PieChartComponent implements AfterViewChecked, AfterViewInit, OnInit {
-export class PieChartComponent implements AfterViewInit {
-	@ViewChild('pieChart', { static: false })
-	pieChart: PieChartCanvasComponent;
+// @Component({
+// 	selector: 'pie-chart',
+// 	templateUrl: './pie-chart.component.html' //,
+// 	// styleUrls: ['./pie-chart.component.scss']
+// })
+// // export class PieChartComponent implements AfterViewChecked, AfterViewInit, OnInit {
+// export class PieChartComponent implements AfterViewInit {
+// 	@ViewChild('pieChart', { static: false })
+// 	pieChart: PieChartCanvasComponent;
 
-	constructor(// private changeDetectorRef: ChangeDetectorRef,
-		// private route: ActivatedRoute,
-		private router: Router,
-		private location: Location
-	) {
-	}
+// 	constructor(// private changeDetectorRef: ChangeDetectorRef,
+// 		// private route: ActivatedRoute,
+// 		private router: Router,
+// 		private location: Location
+// 	) {
+// 	}
 
-	// ngOnInit() {
-	// }
+// 	// ngOnInit() {
+// 	// }
 
-	ngAfterViewInit() {
-		console.log('this.pieChart is', typeof this.pieChart, this.pieChart);
-		this.pieChart.sayHi();
-	}
+// 	ngAfterViewInit() {
+// 		console.log('this.pieChart is', typeof this.pieChart, this.pieChart);
+// 		this.pieChart.sayHi();
+// 	}
 
-	goBack(): void {
-		this.location.back();
-	}
+// 	goBack(): void {
+// 		this.location.back();
+// 	}
 
-	public onClickGoToBarChart(): void  {
-		this.router.navigate(['/bar-chart']);
-	}
-}
+// 	public onClickGoToBarChart(): void  {
+// 		this.router.navigate(['/bar-chart']);
+// 	}
+// }
 
 /* From https://riptutorial.com/chart-js :
 <html>
