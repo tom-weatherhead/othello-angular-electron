@@ -4,7 +4,6 @@
 	"description": "An Othello (Reversi) proof-of-concept application built on Angular, Docker, and Electron.",
 	"keywords": [
 		"Angular",
-		"Bootstrap",
 		"Docker",
 		"Electron",
 		"Othello",
