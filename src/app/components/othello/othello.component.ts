@@ -270,7 +270,7 @@ export class OthelloComponent implements OnInit {
 	}
 
 	onAutomaticMove() {
-		let player = this.gameState.player;
+		let player = this.gameState.player.token;
 
 		if (
 			!this.gameState.isGameOver &&
@@ -285,15 +285,15 @@ export class OthelloComponent implements OnInit {
 			);
 
 			if (typeof moveResult.lastBestMoveInfo !== 'undefined') {
-			console.log(
-				`Auto: ${moveResult.player} moved at row ${moveResult.lastBestMoveInfo.bestRow}, column ${moveResult.lastBestMoveInfo.bestColumn}`
-			);
+				console.log(
+					`Auto: ${moveResult.player.token} moved at row ${moveResult.lastBestMoveInfo.bestRow}, column ${moveResult.lastBestMoveInfo.bestColumn}`
+				);
 			}
 
 			this.gameState = moveResult;
 			this.updateBoardFromGameState();
 			this.update_IsGameOver();
-			player = this.gameState.player;
+			player = this.gameState.player.token;
 
 			if (this.automaticMove[player]) {
 				setTimeout(() => this.onAutomaticMove(), 100);
@@ -315,7 +315,7 @@ export class OthelloComponent implements OnInit {
 		}
 
 		console.log(
-			`Manual: ${this.gameState.player} moved at row ${row}, column ${col}`
+			`Manual: ${this.gameState.player.token} moved at row ${row}, column ${col}`
 		);
 		this.gameState = moveManually(this.gameState, row, col);
 		this.updateBoardFromGameState();
@@ -332,9 +332,5 @@ export class OthelloComponent implements OnInit {
 
 	onClickNewGame() {
 		this.onNewGame();
-	}
-
-	public onClickGoToPieChart(): void {
-		this.router.navigate(['/pie-chart']);
 	}
 }

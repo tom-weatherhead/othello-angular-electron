@@ -12,12 +12,12 @@
 	<button type="button" class="btn btn-primary" (click)="onClickNewGame()">New game</button>
 	<br />
 
-	<label>Black: pop {{blackPopulation}};&nbsp;</label>
+	<label>White: pop {{whitePopulation}};&nbsp;</label>
 	<label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.X"> automove
 	</label>
 
-	<label>&nbsp;&nbsp; White: pop {{whitePopulation}};&nbsp;</label>
+	<label>&nbsp;&nbsp; Black: pop {{blackPopulation}};&nbsp;</label>
 	<label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.O"> automove
 	</label>
@@ -39,6 +39,4 @@
 		</div>
 	</div>
 	<br />
-
-	<button type="button" (click)="onClickGoToPieChart()">Pie Chart</button>
 </div>
