@@ -24,8 +24,8 @@ import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 // Then:
 // import * as imageProcessingJs from 'image-processing-js';
 
-import * as gameEngine from 'thaw-reversi-engine';
-import * as commonUtils from 'thaw-common-utilities.js';
+import { createInitialState, moveAutomatically, moveManually } from 'thaw-reversi-engine.ts';
+import { createAndFillArray } from 'thaw-common-utilities.ts';
 
 const boardWidth = 8;
 const boardHeight = boardWidth;
@@ -135,7 +135,7 @@ export class OthelloComponent implements OnInit {
 	onNewGame() {
 		this.lastMoveWasInvalid = false;
 		this.isGameOver = false;
-		this.gameState = gameEngine.createInitialState();
+		this.gameState = createInitialState();
 
 		this.board = null; // This will force the board to be reconstructed.
 		this.clearCanvas();
@@ -193,21 +193,27 @@ export class OthelloComponent implements OnInit {
 
 	updateBoardFromGameState() {
 		if (!this.board) {
-			this.board = commonUtils.createAndFillArray(
+			// this.board = createAndFillArray(
+			// 	'',
+			// 	boardHeight,
+			// 	boardWidth
+			// );
+			this.board = createAndFillArray(
 				'',
 				boardHeight,
 				boardWidth
-			);
+			) as string[][];
 		}
 
 		for (let row = 0; row < this.board.length; row++) {
 			for (let col = 0; col < this.board[row].length; col++) {
 				const currentColourName = this.board[row][col];
-				const newColourName = this.mapTokenCharToPlayerColourName[
-					this.gameState.boardAsString[
-						row * this.board[row].length + col
-					]
-				];
+				const newColourName =
+					this.mapTokenCharToPlayerColourName[
+						this.gameState.boardAsString[
+							row * this.board[row].length + col
+						]
+					];
 
 				if (newColourName !== currentColourName) {
 					this.board[row][col] = newColourName;
@@ -271,15 +277,18 @@ export class OthelloComponent implements OnInit {
 			this.doOneAutomove = false;
 
 			const maxPly = this.playerPly[player];
-			const moveResult = gameEngine.moveAutomatically(
+			const moveResult = moveAutomatically(
 				this.gameState,
 				maxPly
 			);
 
+			if (typeof moveResult.lastBestMoveInfo !== 'undefined') {
 			console.log(
-				`Auto: ${moveResult.gameState.player} moved at row ${moveResult.bestRow}, column ${moveResult.bestColumn}`
+				`Auto: ${moveResult.player} moved at row ${moveResult.lastBestMoveInfo.bestRow}, column ${moveResult.lastBestMoveInfo.bestColumn}`
 			);
-			this.gameState = moveResult.gameState;
+			}
+
+			this.gameState = moveResult;
 			this.updateBoardFromGameState();
 			this.update_IsGameOver();
 			player = this.gameState.player;
@@ -306,7 +315,7 @@ export class OthelloComponent implements OnInit {
 		console.log(
 			`Manual: ${this.gameState.player} moved at row ${row}, column ${col}`
 		);
-		this.gameState = gameEngine.moveManually(this.gameState, row, col);
+		this.gameState = moveManually(this.gameState, row, col);
 		this.updateBoardFromGameState();
 
 		if (!this.update_IsGameOver()) {

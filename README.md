@@ -1,5 +1,5 @@
 # othello-angular-electron
-An Othello (Reversi) proof-of-concept application built on Angular, Bootstrap, Docker, and Electron
+An Othello (Reversi) proof-of-concept application built on Angular, Docker, and Electron
 
 [![build status](https://secure.travis-ci.org/tom-weatherhead/othello-angular-electron.svg)](https://travis-ci.org/tom-weatherhead/othello-angular-electron)
 [![maintainability](https://api.codeclimate.com/v1/badges/067c83f4f476431aa46b/maintainability)](https://codeclimate.com/github/tom-weatherhead/othello-angular-electron/maintainability)

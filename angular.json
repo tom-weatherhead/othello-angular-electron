@@ -5,7 +5,11 @@
 	"projects": {
 		"othello-angular-electron": {
 			"projectType": "application",
-			"schematics": {},
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
 			"root": "",
 			"sourceRoot": "src",
 			"prefix": "app",
@@ -24,6 +28,7 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
+							"node_modules/material-design-icons/iconfont/material-icons.css",
 							"src/styles.scss"
 						],
 						"scripts": [
@@ -35,27 +40,35 @@
 						]
 					},
 					"configurations": {
-						"production": {
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
-								}
-							],
-							"optimization": true,
+						"dev": {
+							"optimization": false,
 							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
+							"sourceMap": true,
 							"namedChunks": false,
 							"aot": true,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"buildOptimizer": true,
-							"budgets": [
+							"buildOptimizer": false,
+							"fileReplacements": [
 								{
-									"type": "initial",
-									"maximumWarning": "2mb",
-									"maximumError": "5mb"
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.dev.ts"
+								}
+							]
+						},
+						"production": {
+							"optimization": false,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": false,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
 								}
 							]
 						}
@@ -90,6 +103,7 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
+							"node_modules/material-design-icons/iconfont/material-icons.css",
 							"src/styles.scss"
 						],
 						"scripts": [
@@ -98,32 +112,34 @@
 							"node_modules/popper.js/dist/umd/popper.min.js",
 							"node_modules/popper.js/dist/umd/popper-utils.min.js",
 							"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-						]
+						],
+						"codeCoverage": true
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@angular-eslint/builder:lint",
 					"options": {
-						"tsConfig": [
-							"tsconfig.app.json",
-							"tsconfig.spec.json",
-							"e2e/tsconfig.json"
-						],
-						"exclude": [
-							"**/node_modules/**"
+						"eslintConfig": ".eslintrc.js",
+						"lintFilePatterns": [
+							"*.ts",
+							"e2e/**.ts",
+							"src/**.ts"
 						]
 					}
-				},
-				"e2e": {
-					"builder": "@angular-devkit/build-angular:protractor",
+				}
+			}
+		},
+		"othello-angular-electron-e2e": {
+			"root": "e2e",
+			"projectType": "application",
+			"architect": {
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
 					"options": {
-						"protractorConfig": "e2e/protractor.conf.js",
-						"devServerTarget": "othello-angular-electron:serve"
-					},
-					"configurations": {
-						"production": {
-							"devServerTarget": "othello-angular-electron:serve:production"
-						}
+						"eslintConfig": "e2e/.eslintrc.e2e.js",
+						"lintFilePatterns": [
+							"e2e/**.ts"
+						]
 					}
 				}
 			}
