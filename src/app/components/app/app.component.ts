@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 	toggleStatus = false;
 
-	menuToggle() {
+	menuToggle(): void {
 		this.toggleStatus = !this.toggleStatus;
 	}
 }

@@ -24,7 +24,7 @@ import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 // Then:
 // import * as imageProcessingJs from 'image-processing-js';
 
-import { createInitialState, moveAutomatically, moveManually } from 'thaw-reversi-engine.ts';
+import { createInitialState, IGameState, moveAutomatically, moveManually } from 'thaw-reversi-engine.ts';
 import { createAndFillArray } from 'thaw-common-utilities.ts';
 
 const boardWidth = 8;
@@ -50,7 +50,7 @@ export class OthelloComponent implements OnInit {
 	canvas: ElementRef<HTMLCanvasElement>;
 
 	board: string[][]; // Model
-	gameState: any; // Model
+	gameState: IGameState; // Model
 	context: CanvasRenderingContext2D; // View
 
 	mapTokenCharToPlayerColourName = {
@@ -62,11 +62,11 @@ export class OthelloComponent implements OnInit {
 		Black: false,
 		White: true
 	};
-	automaticMove: any = {
+	automaticMove: Record<string, boolean> = {
 		X: false,
 		O: true
 	};
-	playerPly: any = {
+	playerPly: Record<string, number> = {
 		X: 5,
 		O: 5
 	};
@@ -94,7 +94,7 @@ export class OthelloComponent implements OnInit {
 		private location: Location */
 	) {}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.context = this.canvas.nativeElement.getContext('2d');
 		this.onNewGame();
 	}
@@ -105,18 +105,18 @@ export class OthelloComponent implements OnInit {
 	// ngAfterViewChecked() {
 	// }
 
-	changeMessageInPlyDDL(selectedPly: number) {
+	changeMessageInPlyDDL(selectedPly: number): void {
 		this.messageInPlyDDL = `Ply: ${selectedPly}`;
 		this.playerPly.X = selectedPly;
 		this.playerPly.O = selectedPly;
 	}
 
-	displayMessage(message: string) {
+	displayMessage(message: string): void {
 		this.message = message;
 		this.showMessage = !!message; // or message && message.length;
 	}
 
-	clearCanvas() {
+	clearCanvas(): void {
 		// TODO: Find some way to invalidate the entire canvas
 		// in order to ensure that no artifacts are visible when (most of) the pieces are removed.
 
@@ -134,7 +134,7 @@ export class OthelloComponent implements OnInit {
 		this.context.stroke(); // Actually draw the shapes that are described above.
 	}
 
-	onNewGame() {
+	onNewGame(): void {
 		this.lastMoveWasInvalid = false;
 		this.isGameOver = false;
 		this.gameState = createInitialState();
@@ -147,7 +147,7 @@ export class OthelloComponent implements OnInit {
 		this.onAutomaticMove();
 	}
 
-	renderSquareOnBoard(row: number, col: number, isWhite: boolean) {
+	renderSquareOnBoard(row: number, col: number, isWhite: boolean): void {
 		const squareBorderThickness = 2;
 		const xOffset = col * boardSquareWidth;
 		const yOffset = row * boardSquareHeight;
@@ -193,7 +193,7 @@ export class OthelloComponent implements OnInit {
 		this.context.stroke(); // Actually draw the shapes that are described above.
 	}
 
-	updateBoardFromGameState() {
+	updateBoardFromGameState(): void {
 		if (!this.board) {
 			// this.board = createAndFillArray(
 			// 	'',
@@ -232,7 +232,7 @@ export class OthelloComponent implements OnInit {
 		this.whitePopulation = this.gameState.whitePopulation;
 	}
 
-	update_IsGameOver() {
+	update_IsGameOver(): boolean {
 		if (this.gameState.isGameOver) {
 			this.isGameOver = true;
 		} else if (this.gameState.numPiecesFlippedInLastMove === 0) {
@@ -269,7 +269,7 @@ export class OthelloComponent implements OnInit {
 		return this.isGameOver;
 	}
 
-	onAutomaticMove() {
+	onAutomaticMove(): void {
 		let player = this.gameState.player.token;
 
 		if (
@@ -301,7 +301,13 @@ export class OthelloComponent implements OnInit {
 		}
 	}
 
-	onClickCanvas(event: any) {
+	onClickCanvas(event: { offsetX: number; offsetY: number; }): void {
+		// console.log('typeof event:', typeof event);
+
+		// const castEvent = event as { offsetX: number; offsetY: number; };
+
+		// const row = Math.floor(castEvent.offsetY / boardSquareHeight);
+		// const col = Math.floor(castEvent.offsetX / boardSquareWidth);
 		const row = Math.floor(event.offsetY / boardSquareHeight);
 		const col = Math.floor(event.offsetX / boardSquareWidth);
 
@@ -325,12 +331,12 @@ export class OthelloComponent implements OnInit {
 		}
 	}
 
-	onClickOneAutomove() {
+	onClickOneAutomove(): void {
 		this.doOneAutomove = true;
 		this.onAutomaticMove();
 	}
 
-	onClickNewGame() {
+	onClickNewGame(): void {
 		this.onNewGame();
 	}
 }
