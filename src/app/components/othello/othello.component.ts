@@ -24,7 +24,12 @@ import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 // Then:
 // import * as imageProcessingJs from 'image-processing-js';
 
-import { createInitialState, IGameState, moveAutomatically, moveManually } from 'thaw-reversi-engine.ts';
+import {
+	createInitialState,
+	IGameState,
+	moveAutomatically,
+	moveManually
+} from 'thaw-reversi-engine.ts';
 import { createAndFillArray } from 'thaw-common-utilities.ts';
 
 const boardWidth = 8;
@@ -279,10 +284,7 @@ export class OthelloComponent implements OnInit {
 			this.doOneAutomove = false;
 
 			const maxPly = this.playerPly[player];
-			const moveResult = moveAutomatically(
-				this.gameState,
-				maxPly
-			);
+			const moveResult = moveAutomatically(this.gameState, maxPly);
 
 			if (typeof moveResult.lastBestMoveInfo !== 'undefined') {
 				console.log(
@@ -301,7 +303,7 @@ export class OthelloComponent implements OnInit {
 		}
 	}
 
-	onClickCanvas(event: { offsetX: number; offsetY: number; }): void {
+	onClickCanvas(event: { offsetX: number; offsetY: number }): void {
 		// console.log('typeof event:', typeof event);
 
 		// const castEvent = event as { offsetX: number; offsetY: number; };
