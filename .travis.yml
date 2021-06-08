@@ -1,8 +1,8 @@
 language: node_js
 os:
   - linux
-  - osx
-  - windows
+  # - osx
+  # - windows
 dist: focal
 osx_image: xcode12.5
 node_js:
@@ -11,6 +11,9 @@ node_js:
   - 12
 addons:
   chrome: stable
+  apt:
+    packages:
+      - xvfb
 branches:
   only:
     - master
@@ -18,6 +21,8 @@ cache:
   directories:
     - node_modules
 install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - npm set progress=false
   - npm install
 before_script:

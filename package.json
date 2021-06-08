@@ -43,7 +43,7 @@
 		"prettier-format": "prettier --write \"./*.js\" \"e2e/**/*.ts\" \"src/**/*.ts\"",
 		"// unittests": "ng test --code-coverage",
 		"// unittests-headless": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
-		"unit-tests": "ng test --watch=false",
+		"unit-tests": "xvfb-maybe ng test --watch=false --code-coverage",
 		"// e2e": "ng e2e",
 		"e2e": "cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
 		"system-tests": "npm run e2e",
@@ -124,7 +124,8 @@
 		"spectron": "^15.0.0",
 		"ts-node": "^10.0.0",
 		"typescript": "<4.3.0",
-		"webdriver-manager": "^12.1.8"
+		"webdriver-manager": "^12.1.8",
+		"xvfb-maybe": "^0.2.1"
 	},
 	"peerDependencies": {},
 	"// The correct name is bundledDependencies": true,
