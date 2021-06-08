@@ -70,10 +70,12 @@ export class OthelloComponent implements OnInit {
 		X: 5,
 		O: 5
 	};
-	populations: any = {
-		X: 2,
-		O: 2
-	};
+	// populations: any = {
+	// 	X: 2,
+	// 	O: 2
+	// };
+	blackPopulation = 2;
+	whitePopulation = 2;
 	lastMoveWasInvalid: boolean;
 	isGameOver: boolean;
 	showMessage = false;
@@ -226,8 +228,8 @@ export class OthelloComponent implements OnInit {
 			}
 		}
 
-		this.populations.X = this.gameState.populations.X;
-		this.populations.O = this.gameState.populations.O;
+		this.blackPopulation = this.gameState.blackPopulation;
+		this.whitePopulation = this.gameState.whitePopulation;
 	}
 
 	update_IsGameOver() {
@@ -245,17 +247,17 @@ export class OthelloComponent implements OnInit {
 
 		if (this.isGameOver) {
 			console.log('Game over!');
-			console.log('X population:', this.gameState.populations.X);
-			console.log('O population:', this.gameState.populations.O);
+			console.log('Black population:', this.gameState.blackPopulation);
+			console.log('White population:', this.gameState.whitePopulation);
 
 			const diff =
-				this.gameState.populations.X - this.gameState.populations.O;
+				this.gameState.blackPopulation - this.gameState.whitePopulation;
 			let message;
 
 			if (diff > 0) {
-				message = `X wins ${this.gameState.populations.X} to ${this.gameState.populations.O}`;
+				message = `Black wins ${this.gameState.blackPopulation} to ${this.gameState.whitePopulation}`;
 			} else if (diff < 0) {
-				message = `O wins ${this.gameState.populations.O} to ${this.gameState.populations.X}`;
+				message = `White wins ${this.gameState.whitePopulation} to ${this.gameState.blackPopulation}`;
 			} else {
 				message = 'Tie game.';
 			}
