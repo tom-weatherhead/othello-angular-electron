@@ -8,7 +8,7 @@ const { app, BrowserWindow, ipcMain, Tray } = require('electron');
 const platform = os.platform(); // TODO? : Use process.platform instead?
 const isPlatformWindows = platform === 'win32';
 const isPlatformMac = platform === 'darwin';
-// const isPlatformLinux = platform === 'linux';
+const isPlatformLinux = platform === 'linux';
 
 const screen = !isPlatformWindows && require('electron').screen;
 
@@ -28,7 +28,8 @@ let win;
 
 function createWindow() {
 	const faviconFilename = isPlatformWindows ? 'favicon.ico' : 'favicon.png';
-	const tray = new Tray('./dist/assets/' + faviconFilename);
+	const faviconPath = `${__dirname}/dist/assets/${faviconFilename}`;
+	const tray = new Tray(faviconPath);
 
 	// Create the browser window.
 	// win = new BrowserWindow({
@@ -46,19 +47,28 @@ function createWindow() {
 		// backgroundColor: '#7851a9', // From the TouchBar button
 		// icon: 'assets/favicon.png',
 		// icon: faviconFilePath, // ThAW: Does this have any effect?
+		icon: faviconPath,
 		title: 'Othello',
-		worldSafeExecuteJavaScript: true,
+		// worldSafeExecuteJavaScript: true,
+		x: 0,
+		y: 0,
+		width: browserWindowWidth,
+		heighht: browserWindowHeight,
 		webPreferences: {
+			allowRunningInsecureContent: false,
+			contextIsolation: false, // false if you want to run e2e tests with Spectron
+			enableRemoteModule: true, // true if you want to run e2e tests with Spectron or use remote module in renderer context (ie. Angular)
 			nodeIntegration: true //,
 			// preload: '/absolute/path/to/some/preload.js'
 			// preload: `${__dirname}/preload.js`
 		}
 	};
 
-	if (isPlatformWindows) {
-		browserWindowConfig.width = browserWindowWidth;
-		browserWindowConfig.height = browserWindowHeight;
-	} else {
+	// if (isPlatformWindows) {
+	// 	browserWindowConfig.width = browserWindowWidth;
+	// 	browserWindowConfig.height = browserWindowHeight;
+	// } else {
+	if (screen) {
 		const primaryDisplayWorkArea = screen.getPrimaryDisplay().workArea;
 
 		browserWindowConfig.x = primaryDisplayWorkArea.x;
@@ -70,7 +80,8 @@ function createWindow() {
 	// Create the browser window.
 	win = new BrowserWindow(browserWindowConfig);
 
-	win.loadFile('dist/index.html');
+	// win.loadFile('dist/index.html');
+	win.loadFile(`${__dirname}/dist/index.html`);
 
 	// Event that fires when the window is closed.
 	win.on('closed', () => {
@@ -119,7 +130,7 @@ app.on('activate', () => {
 // Terminate the app when all windows are closed.
 app.on('window-all-closed', () => {
 	// On macOS specific close process
-	if (process.platform !== 'darwin') {
+	if (isPlatformMac || isPlatformLinux) {
 		app.quit();
 	}
 });

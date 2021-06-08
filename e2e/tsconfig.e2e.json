@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"outDir": "../dist/out-tsc/e2e",
+		"strict": true,
 		"target": "es5",
 		"types": [
 			"mocha",
@@ -12,8 +13,5 @@
 	},
 	"include": [
 		"*.ts"
-	],
-	"exclude": [
-		"node_modules"
 	]
 }

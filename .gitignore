@@ -70,3 +70,5 @@ dist/
 /run.bat
 
 .DS_Store
+
+release/
