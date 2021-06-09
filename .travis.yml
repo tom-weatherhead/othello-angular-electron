@@ -31,8 +31,7 @@ script:
   - npm run ng-lint
   - npm run build:dev
   - npm run unit-tests
-  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run system-tests ; fi
-  # - if [ "$TRAVIS_OS_NAME" = "windows" ]; then npm run system-tests:windows ; else npm run system-tests ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then npm run system-tests:windows ; else npm run system-tests ; fi
   # - npm run electron:build
 after_script:
   - if [ "$TRAVIS_OS_NAME" = "linux" -a "$TRAVIS_NODE_VERSION" = "16" ]; then ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT ; fi
