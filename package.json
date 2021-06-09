@@ -36,7 +36,7 @@
 		"lint": "eslint . --ext .ts",
 		"ng-lint": "ng lint",
 		"prettier-check": "prettier --check \"./**/*.js\" \"./**/*.ts\"",
-		"prettier-check:windows": "prettier --check \".\\**\\*.js\" \".\\**\\*.ts\"",
+		"// prettier-check:windows": "prettier --check \".\\**\\*.js\" \".\\**\\*.ts\"",
 		"prettier-format": "prettier --write \"./**/*.js\" \"./**/*.ts\"",
 		"unit-tests": "xvfb-maybe ng test --watch=false --code-coverage",
 		"e2e": "cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
