@@ -13,7 +13,7 @@ import {
 import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 // import { Location }                         from '@angular/common';
 
-import { MatSelectChange } from '@angular/material/select';
+// import { MatSelectChange } from '@angular/material/select';
 
 // import { of, timer } from 'rxjs';
 // import { catchError } from 'rxjs/operators';
@@ -28,7 +28,8 @@ import {
 	createInitialState,
 	IGameState,
 	moveAutomatically,
-	moveManually
+	moveManually,
+	PlayerColour
 } from 'thaw-reversi-engine.ts';
 import { createAndFillArray } from 'thaw-common-utilities.ts';
 
@@ -65,16 +66,20 @@ export class OthelloComponent implements OnInit {
 		' ': 'Empty'
 	};
 	mapPlayerColourNameToBoolean = {
-		Black: false,
-		White: true
+		White: true,
+		Black: false
 	};
+	// automaticMove: Record<string, boolean> = {
+	// 	X: false,
+	// 	O: true
+	// };
 	automaticMove: Record<string, boolean> = {
-		X: false,
-		O: true
+		White: false,
+		Black: true
 	};
 	playerPly: Record<string, number> = {
-		X: 5,
-		O: 5
+		White: 5,
+		Black: 5
 	};
 	// populations: any = {
 	// 	X: 2,
@@ -88,17 +93,19 @@ export class OthelloComponent implements OnInit {
 	message = '';
 	doOneAutomove = false;
 
-	messageInPlyDDL = 'Ply: 5';
-	optionsInPlyDDL = [4, 5, 6];
+	public optionsInPlyDDL = [4, 5, 6];
+	public selectedPly = 5;
+	public messageInPlyDDL: string;
 
 	// constructor(private cd: ChangeDetectorRef) {
-	// constructor() {
 	constructor(
 		// private changeDetectorRef: ChangeDetectorRef,
 		// private route: ActivatedRoute,
 		private router: Router /*,
 		private location: Location */
-	) {}
+	) {
+		this.messageInPlyDDL = `Ply: ${this.selectedPly}`;
+	}
 
 	ngOnInit(): void {
 		this.context = this.canvas.nativeElement.getContext('2d');
@@ -113,18 +120,20 @@ export class OthelloComponent implements OnInit {
 
 	// public onChangeSymbol(event: MatSelectChange): void {
 	// changeMessageInPlyDDL(selectedPly: number): void {
-	changeMessageInPlyDDL(event: MatSelectChange): void {
-		console.log('changeMessageInPlyDDL(): event is', typeof event, event);
-		console.log(
-			'changeMessageInPlyDDL(): event.value is',
-			typeof event.value,
-			event.value
-		);
+	// public changeMessageInPlyDDL(event: MatSelectChange): void {
+	// public changeMessageInPlyDDL(): void {
+	// 	// console.log('changeMessageInPlyDDL(): event is', typeof event, event);
+	// 	// console.log(
+	// 	// 	'changeMessageInPlyDDL(): event.value is',
+	// 	// 	typeof event.value,
+	// 	// 	event.value
+	// 	// );
+	// 	// console.log('this.selectedPly:', this.selectedPly);
 
-		// this.messageInPlyDDL = `Ply: ${selectedPly}`;
-		// this.playerPly.X = selectedPly;
-		// this.playerPly.O = selectedPly;
-	}
+	// 	this.messageInPlyDDL = `Ply: ${this.selectedPly}`;
+	// 	this.playerPly.White = this.selectedPly;
+	// 	this.playerPly.Black = this.selectedPly;
+	// }
 
 	displayMessage(message: string): void {
 		this.message = message;
@@ -285,7 +294,13 @@ export class OthelloComponent implements OnInit {
 	}
 
 	onAutomaticMove(): void {
-		let player = this.gameState.player.token;
+		// let player = this.gameState.player.token;
+		// const c = `${this.gameState.player.colour}`;
+
+		// player will be a string, either 'White' or 'Black'
+		let player = PlayerColour[this.gameState.player.colour];
+
+		// console.log(`c is ${typeof c} '${c}'`);
 
 		if (
 			!this.gameState.isGameOver &&
@@ -297,15 +312,19 @@ export class OthelloComponent implements OnInit {
 			const moveResult = moveAutomatically(this.gameState, maxPly);
 
 			if (typeof moveResult.lastBestMoveInfo !== 'undefined') {
+				// console.log(
+				// 	`Auto: ${moveResult.player.token} moved at row ${moveResult.lastBestMoveInfo.bestRow}, column ${moveResult.lastBestMoveInfo.bestColumn}`
+				// );
 				console.log(
-					`Auto: ${moveResult.player.token} moved at row ${moveResult.lastBestMoveInfo.bestRow}, column ${moveResult.lastBestMoveInfo.bestColumn}`
+					`Auto: ${player} moved at row ${moveResult.lastBestMoveInfo.bestRow}, column ${moveResult.lastBestMoveInfo.bestColumn}`
 				);
 			}
 
 			this.gameState = moveResult;
 			this.updateBoardFromGameState();
 			this.update_IsGameOver();
-			player = this.gameState.player.token;
+			// player = this.gameState.player.token;
+			player = PlayerColour[this.gameState.player.colour];
 
 			if (this.automaticMove[player]) {
 				setTimeout(() => this.onAutomaticMove(), 100);
@@ -333,7 +352,9 @@ export class OthelloComponent implements OnInit {
 		}
 
 		console.log(
-			`Manual: ${this.gameState.player.token} moved at row ${row}, column ${col}`
+			`Manual: ${
+				PlayerColour[this.gameState.player.colour]
+			} moved at row ${row}, column ${col}`
 		);
 		this.gameState = moveManually(this.gameState, row, col);
 		this.updateBoardFromGameState();
