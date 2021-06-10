@@ -9,7 +9,7 @@ import {
 	// ipcMain,
 	Menu,
 	screen,
-	// TouchBar,
+	TouchBar,
 	Tray
 } from 'electron';
 
@@ -86,6 +86,54 @@ function setDockMenu() {
 	app.dock.setMenu(dockMenu);
 	app.dock.setIcon(macOSDockIconFilePath);
 }
+
+let turbineBoostEnabled = false;
+
+function turnTouchBarOn() {
+	if (!isPlatformMac) {
+		return;
+	}
+
+	const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar;
+
+	const touchBarButton = new TouchBarButton({
+		label: 'Turbine Boost',
+		backgroundColor: '#7851A9',
+		click: () => {
+			turbineBoostEnabled = !turbineBoostEnabled;
+
+			const status = turbineBoostEnabled ? 'enabled' : 'disabled';
+
+			label1.label = status;
+			label1.textColor = turbineBoostEnabled ? '#00FF00' : '#FF0000';
+			console.log(`Turbine Boost ${status}.`);
+			// win.webContents.send('touchbar-button-toggle-turbine-boost');
+		}
+	});
+	const label1 = new TouchBarLabel({
+		label: 'disabled',
+		// accessibilityLabel: 'disabled',
+		textColor: '#FF0000'
+	});
+
+	// label1.label = 'disabled';
+
+	const touchBar = new TouchBar({
+		items: [touchBarButton, new TouchBarSpacer({ size: 'small' }), label1]
+	});
+
+	win.setTouchBar(touchBar);
+}
+
+// function turnTouchBarOff() {
+// 	if (!isPlatformMac) {
+// 		return;
+// 	}
+
+// 	win.setTouchBar(null);
+// }
+
+// let isTouchBarOn = false;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function createWindow(launchInfo: unknown = undefined) {
@@ -269,6 +317,7 @@ function createWindow(launchInfo: unknown = undefined) {
 	// });
 
 	setDockMenu(); // macOS only
+	turnTouchBarOn(); // macOS only
 }
 
 // Create the browser window upon Electron intialization:
