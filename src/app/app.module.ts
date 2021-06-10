@@ -20,11 +20,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 // import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
+// import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+// import { MatSidenavModule } from '@angular/material/sidenav';
+// import { MatToolbarModule } from '@angular/material/toolbar';
+// import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -47,12 +47,12 @@ import { OthelloComponent } from './components/othello/othello.component';
 		MatButtonModule, // Part of Angular Material
 		MatCheckboxModule, // Part of Angular Material
 		// MatDatepickerModule,
-		MatInputModule,
+		// MatInputModule,
 		// MatNativeDateModule,
-		MatSelectModule,
-		MatSidenavModule,
-		MatToolbarModule,
-		MatTooltipModule // Part of Angular Material
+		MatSelectModule // ,
+		// MatSidenavModule,
+		// MatToolbarModule,
+		// MatTooltipModule // Part of Angular Material
 	],
 	declarations: [
 		// AppComponent,

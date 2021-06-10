@@ -19,10 +19,12 @@ const isPlatformMac = platform === 'darwin';
 
 const assetsDir = './dist/assets';
 
-const faviconFileBasePath = assetsDir + '/favicon.';
-const icoIconFilePath = faviconFileBasePath + 'ico';
-const pngIconFilePath = faviconFileBasePath + 'png';
-const faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
+const faviconFileBasePath = assetsDir + '/favicon';
+const faviconFileExtension = isPlatformWindows ? 'ico' : 'png';
+// const icoIconFilePath = faviconFileBasePath + 'ico';
+// const pngIconFilePath = faviconFileBasePath + 'png';
+// const faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
+const faviconFilePath = `${faviconFileBasePath}.${faviconFileExtension}`;
 
 const macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
 
@@ -85,7 +87,7 @@ function setDockMenu() {
 
 // On macOS: function createWindow (launchInfo) {
 // function createWindow(launchInfo) {
-function createWindow() {
+function createWindow(launchInfo: unknown = undefined) {
 	// launchInfo is defined only on macOS
 	// console.log('launchInfo is', typeof launchInfo, launchInfo);
 

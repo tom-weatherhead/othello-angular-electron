@@ -8,10 +8,12 @@ var isPlatformWindows = platform === 'win32';
 var isPlatformMac = platform === 'darwin';
 // const isPlatformLinux = platform === 'linux';
 var assetsDir = './dist/assets';
-var faviconFileBasePath = assetsDir + '/favicon.';
-var icoIconFilePath = faviconFileBasePath + 'ico';
-var pngIconFilePath = faviconFileBasePath + 'png';
-var faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
+var faviconFileBasePath = assetsDir + '/favicon';
+var faviconFileExtension = isPlatformWindows ? 'ico' : 'png';
+// const icoIconFilePath = faviconFileBasePath + 'ico';
+// const pngIconFilePath = faviconFileBasePath + 'png';
+// const faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
+var faviconFilePath = faviconFileBasePath + "." + faviconFileExtension;
 var macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
 // const browserWindowWidth = 992;
 // const browserWindowHeight = 750;
@@ -64,9 +66,10 @@ function setDockMenu() {
 }
 // On macOS: function createWindow (launchInfo) {
 // function createWindow(launchInfo) {
-function createWindow() {
+function createWindow(launchInfo) {
     // launchInfo is defined only on macOS
     // console.log('launchInfo is', typeof launchInfo, launchInfo);
+    if (launchInfo === void 0) { launchInfo = undefined; }
     if (!isPlatformMac && !isPlatformWindows) {
         console.log('platform is', typeof platform, platform);
     }
