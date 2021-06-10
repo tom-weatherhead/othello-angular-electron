@@ -29,10 +29,9 @@ script:
   - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run prettier-check ; fi
   - npm run lint
   - npm run ng-lint
-  - ng build -c dev --base-href .
+  - npm run build:dev
   - npm run unit-tests
   - npm run system-tests
-  # - if [ "$TRAVIS_OS_NAME" = "windows" ]; then npm run system-tests:windows ; else npm run system-tests ; fi
-  # - npm run electron:build # Fails. Bad environment.
+  # - npm run electron:build # Fails: Bad environment for building installer.
 after_script:
   - if [ "$TRAVIS_OS_NAME" = "linux" -a "$TRAVIS_NODE_VERSION" = "16" ]; then ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT ; fi

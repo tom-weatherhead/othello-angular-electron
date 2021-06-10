@@ -6,11 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 // RouterTestingModule : See https://stackoverflow.com/questions/41252496/router-outlet-is-not-a-known-element
 import { RouterTestingModule } from '@angular/router/testing';
 
-import {
-	NgbModule //,
-	// NgbDropdownModule,
-	// NgbDropdown
-} from '@ng-bootstrap/ng-bootstrap';
+// import {
+// 	NgbModule //,
+// 	// NgbDropdownModule,
+// 	// NgbDropdown
+// } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
@@ -30,10 +30,10 @@ describe('AppComponent', () => {
 				// HttpClientModule,
 				FormsModule, // For e.g. NgModel
 				ReactiveFormsModule,
-				RouterTestingModule,
+				RouterTestingModule // ,
 				// JsonpModule,
 				// NgbModule.forRoot()
-				NgbModule
+				// NgbModule
 				// NgbDropdownModule
 			],
 			declarations: [AppComponent]
