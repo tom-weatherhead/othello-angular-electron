@@ -109,7 +109,16 @@ function createWindow(launchInfo: unknown = undefined) {
 		throw new Error('FATAL: screen is falsy');
 	}
 
+	// const defaultDisplayWorkArea = {
+	// 	x: 0,
+	// 	y: 0,
+	// 	width: browserWindowWidth,
+	// 	height: browserWindowHeight
+	// };
 	const primaryDisplayWorkArea = screen.getPrimaryDisplay().workArea;
+	// const primaryDisplayWorkArea = screen
+	// 	? screen.getPrimaryDisplay().workArea
+	// 	: defaultDisplayWorkArea;
 	const dx = Math.floor(
 		(primaryDisplayWorkArea.width - browserWindowWidth) / 2
 	);
@@ -273,7 +282,7 @@ app.on('activate', () => {
 
 // macOS: Terminate the app when all of the app's windows are closed.
 app.on('window-all-closed', () => {
-	if (isPlatformMac) {
-		app.quit();
-	}
+	// if (isPlatformMac) {
+	app.quit();
+	// }
 });
