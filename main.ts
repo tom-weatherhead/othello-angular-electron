@@ -85,8 +85,7 @@ function setDockMenu() {
 	app.dock.setIcon(macOSDockIconFilePath);
 }
 
-// On macOS: function createWindow (launchInfo) {
-// function createWindow(launchInfo) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function createWindow(launchInfo: unknown = undefined) {
 	// launchInfo is defined only on macOS
 	// console.log('launchInfo is', typeof launchInfo, launchInfo);
