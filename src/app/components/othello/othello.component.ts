@@ -13,7 +13,7 @@ import {
 import { /* ActivatedRoute, ParamMap, */ Router } from '@angular/router';
 // import { Location }                         from '@angular/common';
 
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSelectChange } from '@angular/material/select';
 
 // import { of, timer } from 'rxjs';
 // import { catchError } from 'rxjs/operators';
@@ -111,10 +111,19 @@ export class OthelloComponent implements OnInit {
 	// ngAfterViewChecked() {
 	// }
 
-	changeMessageInPlyDDL(selectedPly: number): void {
-		this.messageInPlyDDL = `Ply: ${selectedPly}`;
-		this.playerPly.X = selectedPly;
-		this.playerPly.O = selectedPly;
+	// public onChangeSymbol(event: MatSelectChange): void {
+	// changeMessageInPlyDDL(selectedPly: number): void {
+	changeMessageInPlyDDL(event: MatSelectChange): void {
+		console.log('changeMessageInPlyDDL(): event is', typeof event, event);
+		console.log(
+			'changeMessageInPlyDDL(): event.value is',
+			typeof event.value,
+			event.value
+		);
+
+		// this.messageInPlyDDL = `Ply: ${selectedPly}`;
+		// this.playerPly.X = selectedPly;
+		// this.playerPly.O = selectedPly;
 	}
 
 	displayMessage(message: string): void {

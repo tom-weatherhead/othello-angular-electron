@@ -16,20 +16,22 @@
 	<br />
 
 	<label>White: pop {{whitePopulation}};&nbsp;</label>
-	<label class="btn btn-primary" ngbButtonLabel>
+	<!-- <label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.X"> automove
-	</label>
+	</label> -->
+	<mat-checkbox [(ngModel)]="automaticMove.X">automove</mat-checkbox>
 
 	<label>&nbsp;&nbsp; Black: pop {{blackPopulation}};&nbsp;</label>
-	<label class="btn btn-primary" ngbButtonLabel>
+	<!-- <label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.O"> automove
-	</label>
+	</label> -->
+	<mat-checkbox [(ngModel)]="automaticMove.O">automove</mat-checkbox>
 	<br />
 
 	<canvas #canvas width="400" height="400" (click)="onClickCanvas($event)"></canvas>
 	<br />
 
-	<div ngbDropdown class="d-inline-block">
+	<!-- <div ngbDropdown class="d-inline-block">
 		<button class="btn btn-outline-primary" id="ddlPly" ngbDropdownToggle >
 			{{messageInPlyDDL}}
 		</button>
@@ -40,7 +42,15 @@
 				id="option" (click)="changeMessageInPlyDDL(option)">{{option}}</button>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	<mat-form-field appearance="fill">
+		<mat-label>Options</mat-label>
+		<mat-select (selectionChange)="changeMessageInPlyDDL($event)">
+			<mat-option *ngFor="let option of optionsInPlyDDL">
+				{{ option }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
 	<br />
 </main>
 <!-- </div> -->
