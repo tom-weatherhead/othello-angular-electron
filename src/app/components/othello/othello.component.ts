@@ -45,7 +45,8 @@ const colourGold = '#d4af37';
 // const colourGold = '#ffd700';
 
 @Component({
-	selector: 'app-othello',
+	// selector: 'app-othello',
+	selector: 'app-root',
 	templateUrl: './othello.component.html',
 	styleUrls: ['./othello.component.scss']
 })

@@ -28,7 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './components/app/app.component';
+// import { AppComponent } from './components/app/app.component';
 import { OthelloComponent } from './components/othello/othello.component';
 
 @NgModule({
@@ -55,7 +55,7 @@ import { OthelloComponent } from './components/othello/othello.component';
 		MatTooltipModule // Part of Angular Material
 	],
 	declarations: [
-		AppComponent,
+		// AppComponent,
 		// NgbDropdown,
 		// PieChartComponent,
 		OthelloComponent //,
@@ -67,6 +67,6 @@ import { OthelloComponent } from './components/othello/othello.component';
 		// HttpJsonClientService,
 		// etc.
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [OthelloComponent]
 })
 export class AppModule {}

@@ -7,8 +7,13 @@ var platform = os.platform(); // TODO? : Use process.platform instead?
 var isPlatformWindows = platform === 'win32';
 var isPlatformMac = platform === 'darwin';
 // const isPlatformLinux = platform === 'linux';
+var assetsDir = './dist/assets';
+var faviconFileBasePath = assetsDir + '/favicon.';
+var icoIconFilePath = faviconFileBasePath + 'ico';
+var pngIconFilePath = faviconFileBasePath + 'png';
+var faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
+var macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
 var win;
-var icoIconFilePath = './dist/assets/favicon.ico';
 // See https://electronjs.org/docs/api/app#appdisablehardwareacceleration
 // app.disableHardwareAcceleration();
 // TODO: Use app.isUnityRunning() on Linux?
@@ -21,7 +26,7 @@ if (isPlatformMac) {
         credits: 'Hallelujah!',
         authors: ['Tom Weatherhead'],
         website: 'https://2hrd4u.org',
-        iconPath: pngIconFilePath
+        iconPath: macOSDockIconFilePath
     });
 }
 function setDockMenu() {
@@ -51,11 +56,7 @@ function setDockMenu() {
         }
     ]);
     electron_1.app.dock.setMenu(dockMenu);
-    // getPathToRandomAppIconPNGFile(appIconPNGFilesDir).then((appIconPNGFile) => {
-    // 	console.log('Using app icon at', appIconPNGFile);
-    pngIconFilePath = appIconPNGFile;
-    electron_1.app.dock.setIcon(appIconPNGFile);
-    // });
+    electron_1.app.dock.setIcon(macOSDockIconFilePath);
 }
 // On macOS: function createWindow (launchInfo) {
 // function createWindow(launchInfo) {
@@ -65,9 +66,6 @@ function createWindow() {
     if (!isPlatformMac && !isPlatformWindows) {
         console.log('platform is', typeof platform, platform);
     }
-    var faviconFilePath = isPlatformWindows
-        ? icoIconFilePath
-        : pngIconFilePathTray;
     // macOS: This icon appears briefly in the Menu Bar, not scaled.
     // -> Use a PNG that is less than 32x32.
     var tray = new electron_1.Tray(faviconFilePath);

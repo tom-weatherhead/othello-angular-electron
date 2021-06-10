@@ -17,9 +17,16 @@ const isPlatformWindows = platform === 'win32';
 const isPlatformMac = platform === 'darwin';
 // const isPlatformLinux = platform === 'linux';
 
-let win;
+const assetsDir = './dist/assets';
 
-const icoIconFilePath = './dist/assets/favicon.ico';
+const faviconFileBasePath = assetsDir + '/favicon.';
+const icoIconFilePath = faviconFileBasePath + 'ico';
+const pngIconFilePath = faviconFileBasePath + 'png';
+const faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
+
+const macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
+
+let win;
 
 // See https://electronjs.org/docs/api/app#appdisablehardwareacceleration
 // app.disableHardwareAcceleration();
@@ -35,7 +42,7 @@ if (isPlatformMac) {
 		credits: 'Hallelujah!',
 		authors: ['Tom Weatherhead'],
 		website: 'https://2hrd4u.org',
-		iconPath: pngIconFilePath
+		iconPath: macOSDockIconFilePath
 	});
 }
 
@@ -68,12 +75,7 @@ function setDockMenu() {
 	]);
 
 	app.dock.setMenu(dockMenu);
-
-	// getPathToRandomAppIconPNGFile(appIconPNGFilesDir).then((appIconPNGFile) => {
-	// 	console.log('Using app icon at', appIconPNGFile);
-	pngIconFilePath = appIconPNGFile;
-	app.dock.setIcon(appIconPNGFile);
-	// });
+	app.dock.setIcon(macOSDockIconFilePath);
 }
 
 // On macOS: function createWindow (launchInfo) {
@@ -86,9 +88,6 @@ function createWindow() {
 		console.log('platform is', typeof platform, platform);
 	}
 
-	const faviconFilePath = isPlatformWindows
-		? icoIconFilePath
-		: pngIconFilePathTray;
 	// macOS: This icon appears briefly in the Menu Bar, not scaled.
 	// -> Use a PNG that is less than 32x32.
 	const tray = new Tray(faviconFilePath);

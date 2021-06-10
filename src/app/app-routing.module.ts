@@ -3,16 +3,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './components/app/app.component';
+// import { AppComponent } from './components/app/app.component';
 import { OthelloComponent } from './components/othello/othello.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/othello', pathMatch: 'full' },
-	{ path: 'app-root', component: AppComponent },
+	{ path: '', redirectTo: '/app-root', pathMatch: 'full' },
+	{ path: 'app-root', component: OthelloComponent } // ,
 	// { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 	// { path: 'dashboard',			component: DashboardComponent },
 	// { path: 'detail/:id',			component: HeroDetailComponent },
-	{ path: 'othello', component: OthelloComponent }
+	// { path: 'othello', component: OthelloComponent }
 ];
 
 @NgModule({

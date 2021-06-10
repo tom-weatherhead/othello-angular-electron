@@ -1,4 +1,5 @@
-<div class="container-fluid centre">
+<!-- <div class="container-fluid centre"> -->
+<main>
 	<h1 class="mt-4">Othello</h1>
 	<br />
 
@@ -8,8 +9,10 @@
 		<br />
 	</div>
 
-	<button type="button" class="btn btn-primary" (click)="onClickOneAutomove()">One automove</button>
-	<button type="button" class="btn btn-primary" (click)="onClickNewGame()">New game</button>
+	<!-- <button type="button" class="btn btn-primary" (click)="onClickOneAutomove()">One automove</button> -->
+	<button mat-raised-button color="primary" (click)="onClickOneAutomove()">One automove</button>
+	<!-- <button type="button" class="btn btn-primary" (click)="onClickNewGame()">New game</button> -->
+	<button mat-raised-button color="primary" (click)="onClickNewGame()">New game</button>
 	<br />
 
 	<label>White: pop {{whitePopulation}};&nbsp;</label>
@@ -39,4 +42,5 @@
 		</div>
 	</div>
 	<br />
-</div>
+</main>
+<!-- </div> -->

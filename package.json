@@ -20,13 +20,12 @@
 	"bugs": {
 		"url": "https://github.com/tom-weatherhead/othello-angular-electron/issues"
 	},
-	"// main": "main.js",
-	"main": "old-main.js",
+	"main": "main.js",
+	"// main": "old-main.js",
 	"scripts": {
 		"all": "npm run clean && npm i && npm test && npm start",
 		"// all-notests": "npm run clean && npm i && npm start",
 		"clean-build-products": "rm -rf coverage && rm -rf dist && rm -rf release && rm -f main.js",
-		"clean-build-products": "rm -rf coverage && rm -rf dist && rm -rf release",
 		"clean": "npm run clean-packages && npm run clean-build-products",
 		"build:dev": "ng build -c dev --base-href ./ && npm run build-electron-main",
 		"build:prod": "ng build -c production --base-href ./ && npm run build-electron-main",
