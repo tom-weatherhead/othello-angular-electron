@@ -13,6 +13,10 @@ var icoIconFilePath = faviconFileBasePath + 'ico';
 var pngIconFilePath = faviconFileBasePath + 'png';
 var faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
 var macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
+// const browserWindowWidth = 992;
+// const browserWindowHeight = 750;
+var browserWindowWidth = 500;
+var browserWindowHeight = 750;
 var win;
 // See https://electronjs.org/docs/api/app#appdisablehardwareacceleration
 // app.disableHardwareAcceleration();
@@ -69,17 +73,27 @@ function createWindow() {
     // macOS: This icon appears briefly in the Menu Bar, not scaled.
     // -> Use a PNG that is less than 32x32.
     var tray = new electron_1.Tray(faviconFilePath);
+    if (!electron_1.screen) {
+        console.error('FATAL: screen is falsy');
+        throw new Error('FATAL: screen is falsy');
+    }
     var primaryDisplayWorkArea = electron_1.screen.getPrimaryDisplay().workArea;
+    var dx = Math.floor((primaryDisplayWorkArea.width - browserWindowWidth) / 2);
+    var dy = Math.floor((primaryDisplayWorkArea.height - browserWindowHeight) / 2);
     var browserWindowConfig = {
         backgroundColor: '#ffffff',
         // backgroundColor: '#7851a9', // From the TouchBar button
         // icon: 'assets/favicon.png',
         icon: faviconFilePath,
         title: 'Forexus',
-        x: primaryDisplayWorkArea.x,
-        y: primaryDisplayWorkArea.y,
-        width: primaryDisplayWorkArea.width,
-        height: primaryDisplayWorkArea.height,
+        // x: primaryDisplayWorkArea.x,
+        // y: primaryDisplayWorkArea.y,
+        // width: primaryDisplayWorkArea.width,
+        // height: primaryDisplayWorkArea.height,
+        x: Math.max(dx, 0),
+        y: Math.max(dy, 0),
+        width: Math.min(browserWindowWidth, primaryDisplayWorkArea.width),
+        height: Math.min(browserWindowHeight, primaryDisplayWorkArea.height),
         webPreferences: {
             allowRunningInsecureContent: false,
             // contextIsolation and worldSafeExecuteJavaScript:

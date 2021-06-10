@@ -26,6 +26,11 @@ const faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
 
 const macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
 
+// const browserWindowWidth = 992;
+// const browserWindowHeight = 750;
+const browserWindowWidth = 500;
+const browserWindowHeight = 750;
+
 let win;
 
 // See https://electronjs.org/docs/api/app#appdisablehardwareacceleration
@@ -91,7 +96,19 @@ function createWindow() {
 	// macOS: This icon appears briefly in the Menu Bar, not scaled.
 	// -> Use a PNG that is less than 32x32.
 	const tray = new Tray(faviconFilePath);
+
+	if (!screen) {
+		console.error('FATAL: screen is falsy');
+		throw new Error('FATAL: screen is falsy');
+	}
+
 	const primaryDisplayWorkArea = screen.getPrimaryDisplay().workArea;
+	const dx = Math.floor(
+		(primaryDisplayWorkArea.width - browserWindowWidth) / 2
+	);
+	const dy = Math.floor(
+		(primaryDisplayWorkArea.height - browserWindowHeight) / 2
+	);
 
 	const browserWindowConfig = {
 		backgroundColor: '#ffffff',
@@ -99,10 +116,14 @@ function createWindow() {
 		// icon: 'assets/favicon.png',
 		icon: faviconFilePath, // ThAW: Does this have any effect?
 		title: 'Forexus',
-		x: primaryDisplayWorkArea.x,
-		y: primaryDisplayWorkArea.y,
-		width: primaryDisplayWorkArea.width,
-		height: primaryDisplayWorkArea.height,
+		// x: primaryDisplayWorkArea.x,
+		// y: primaryDisplayWorkArea.y,
+		// width: primaryDisplayWorkArea.width,
+		// height: primaryDisplayWorkArea.height,
+		x: Math.max(dx, 0),
+		y: Math.max(dy, 0),
+		width: Math.min(browserWindowWidth, primaryDisplayWorkArea.width),
+		height: Math.min(browserWindowHeight, primaryDisplayWorkArea.height),
 		webPreferences: {
 			allowRunningInsecureContent: false,
 			// contextIsolation and worldSafeExecuteJavaScript:
