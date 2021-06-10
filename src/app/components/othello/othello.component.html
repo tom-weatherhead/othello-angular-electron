@@ -1,5 +1,6 @@
 <!-- <div class="container-fluid centre"> -->
 <main>
+	<div class="centre">
 	<h1 class="mt-4">Othello</h1>
 	<br />
 
@@ -25,7 +26,7 @@
 	<!-- <label class="btn btn-primary" ngbButtonLabel>
 		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.O"> automove
 	</label> -->
-	<mat-checkbox [(ngModel)]="automaticMove.Black">automove</mat-checkbox>
+	<mat-checkbox color="primary" [(ngModel)]="automaticMove.Black">automove</mat-checkbox>
 	<br />
 
 	<canvas #canvas width="400" height="400" (click)="onClickCanvas($event)"></canvas>
@@ -61,5 +62,6 @@
 			</mat-option>
 		</mat-select>
 	</mat-form-field>
+	</div>
 </main>
 <!-- </div> -->
