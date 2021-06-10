@@ -1,6 +1,7 @@
 // othello-angular-electron/main.ts
 
-import * as os from 'os';
+// import * as os from 'os';
+import { platform } from 'os';
 
 import {
 	app,
@@ -12,12 +13,13 @@ import {
 	Tray
 } from 'electron';
 
-const platform = os.platform(); // TODO? : Use process.platform instead?
-const isPlatformWindows = platform === 'win32';
-const isPlatformMac = platform === 'darwin';
-// const isPlatformLinux = platform === 'linux';
+// const platform = os.platform(); // TODO? : Use process.platform instead?
+const isPlatformWindows = platform() === 'win32';
+const isPlatformMac = platform() === 'darwin';
+// const isPlatformLinux = platform() === 'linux';
 
-const assetsDir = './dist/assets';
+// const assetsDir = './dist/assets';
+const assetsDir = `${__dirname}/dist/assets`;
 
 const faviconFileBasePath = assetsDir + '/favicon';
 const faviconFileExtension = isPlatformWindows ? 'ico' : 'png';
@@ -90,9 +92,13 @@ function createWindow(launchInfo: unknown = undefined) {
 	// launchInfo is defined only on macOS
 	// console.log('launchInfo is', typeof launchInfo, launchInfo);
 
-	if (!isPlatformMac && !isPlatformWindows) {
-		console.log('platform is', typeof platform, platform);
-	}
+	// if (!isPlatformMac && !isPlatformWindows) {
+	// 	console.log('platform is', typeof platform, platform);
+	// }
+
+	// const p = platform();
+
+	// console.log(`platform is ${typeof p} '${p}'`);
 
 	// macOS: This icon appears briefly in the Menu Bar, not scaled.
 	// -> Use a PNG that is less than 32x32.
@@ -142,7 +148,8 @@ function createWindow(launchInfo: unknown = undefined) {
 	// Create the browser window.
 	win = new BrowserWindow(browserWindowConfig);
 
-	win.loadFile('dist/index.html');
+	// win.loadFile('dist/index.html');
+	win.loadFile(`${__dirname}/dist/index.html`);
 	// win.loadFile(`file://${__dirname}/dist/index.html`);
 
 	// Event that fires when the window is closed.
@@ -223,9 +230,9 @@ function createWindow(launchInfo: unknown = undefined) {
 					event.preventDefault();
 					break;
 
-				case 'F11':
-					console.log('TODO: Full-screen mode');
-					break;
+				// case 'F11':
+				// 	console.log('TODO: Full-screen mode');
+				// 	break;
 
 				case 'F12':
 					win.webContents.toggleDevTools();

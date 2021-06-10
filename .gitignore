@@ -68,7 +68,9 @@ dist/
 /run.sh
 /build.bat
 /run.bat
+/main.js
+
+# Release directory created by electron-builder:
+/release
 
 .DS_Store
-
-release/
