@@ -114,21 +114,6 @@
 					}
 				}
 			}
-		},
-		"othello-angular-electron-e2e": {
-			"root": "e2e",
-			"projectType": "application",
-			"architect": {
-				"lint": {
-					"builder": "@angular-eslint/builder:lint",
-					"options": {
-						"eslintConfig": "e2e/.eslintrc.e2e.js",
-						"lintFilePatterns": [
-							"e2e/**.ts"
-						]
-					}
-				}
-			}
 		}
 	},
 	"defaultProject": "othello-angular-electron"
