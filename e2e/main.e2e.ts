@@ -17,7 +17,7 @@ describe('othello-angular-electron', () => {
 	let app: Application;
 	let client: SpectronClient;
 
-	beforeEach(async function () {
+	beforeEach(async () => {
 		const electronPath = electron.toString();
 
 		// timeout(10000);
@@ -63,7 +63,7 @@ describe('othello-angular-electron', () => {
 		// }
 	});
 
-	afterEach(async function () {
+	afterEach(async () => {
 		if (app && app.isRunning()) {
 			await app.stop();
 		}
