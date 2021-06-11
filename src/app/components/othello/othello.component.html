@@ -1,67 +1,44 @@
-<!-- <div class="container-fluid centre"> -->
 <main>
 	<div class="centre">
-	<h1 class="mt-4">Othello</h1>
-	<br />
-
-	<div class="text" *ngIf="showMessage">
-		<audio src="assets/chime.mp3" autoplay></audio>
-		<mat-label>{{message}}</mat-label>
+		<h1 class="mt-4">Othello</h1>
 		<br />
-	</div>
 
-	<!-- <button type="button" class="btn btn-primary" (click)="onClickOneAutomove()">One automove</button> -->
-	<button mat-raised-button color="primary" (click)="onClickOneAutomove()">One automove</button>
-	<!-- <button type="button" class="btn btn-primary" (click)="onClickNewGame()">New game</button> -->
-	<button mat-raised-button color="primary" (click)="onClickNewGame()">New game</button>
-	<br />
-
-	<mat-label>White: pop {{whitePopulation}};&nbsp;</mat-label>
-	<!-- <label class="btn btn-primary" ngbButtonLabel>
-		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.X"> automove
-	</label> -->
-	<mat-checkbox color="primary" [(ngModel)]="automaticMove.White">automove</mat-checkbox>
-
-	<mat-label>&nbsp;&nbsp; Black: pop {{blackPopulation}};&nbsp;</mat-label>
-	<!-- <label class="btn btn-primary" ngbButtonLabel>
-		<input type="checkbox" ngbButton [(ngModel)]="automaticMove.O"> automove
-	</label> -->
-	<mat-checkbox color="primary" [(ngModel)]="automaticMove.Black">automove</mat-checkbox>
-	<br />
-
-	<canvas #canvas width="400" height="400" (click)="onClickCanvas($event)"></canvas>
-	<br />
-
-	<!-- <div ngbDropdown class="d-inline-block">
-		<button class="btn btn-outline-primary" id="ddlPly" ngbDropdownToggle >
-			{{messageInPlyDDL}}
-		</button>
-
-		<div ngbDropdownMenu class="dropdown-menu" id="options" aria-labelledby="ddlPly">
-			<div *ngFor="let option of optionsInPlyDDL">
-				<button class="dropdown-item"
-				id="option" (click)="changeMessageInPlyDDL(option)">{{option}}</button>
-			</div>
+		<div class="text" *ngIf="showMessage">
+			<audio src="assets/chime.mp3" autoplay></audio>
+			<mat-label>{{message}}</mat-label>
+			<br />
 		</div>
-	</div> -->
-	<mat-form-field appearance="fill">
-		<mat-label>White ply</mat-label>
-		<!-- <mat-select [(ngModel)]="selectedPly" (selectionChange)="changeMessageInPlyDDL($event)"> -->
-		<mat-select [(ngModel)]="playerPly.White">
-			<mat-option *ngFor="let ply of optionsInPlyDDL" [value]="ply">
-				{{ ply }}
-			</mat-option>
-		</mat-select>
-	</mat-form-field>
-	<mat-form-field appearance="fill">
-		<mat-label>Black ply</mat-label>
-		<!-- <mat-select [(ngModel)]="selectedPly" (selectionChange)="changeMessageInPlyDDL($event)"> -->
-		<mat-select [(ngModel)]="playerPly.Black">
-			<mat-option *ngFor="let ply of optionsInPlyDDL" [value]="ply">
-				{{ ply }}
-			</mat-option>
-		</mat-select>
-	</mat-form-field>
+
+		<button mat-raised-button color="primary" (click)="onClickOneAutomove()">One automove</button>
+		<button mat-raised-button color="primary" (click)="onClickNewGame()">New game</button>
+		<br />
+
+		<mat-label>White: pop {{whitePopulation}};&nbsp;</mat-label>
+		<mat-checkbox color="primary" [(ngModel)]="automaticMove.White">automove</mat-checkbox>
+
+		<mat-label>&nbsp;&nbsp; Black: pop {{blackPopulation}};&nbsp;</mat-label>
+		<mat-checkbox color="primary" [(ngModel)]="automaticMove.Black">automove</mat-checkbox>
+		<br />
+
+		<canvas #canvas width="400" height="400" (click)="onClickCanvas($event)"></canvas>
+		<br />
+
+		<mat-form-field appearance="fill">
+			<mat-label>White ply</mat-label>
+			<mat-select [(ngModel)]="playerPly.White">
+				<mat-option *ngFor="let ply of optionsInPlyDDL" [value]="ply">
+					{{ ply }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field appearance="fill">
+			<mat-label>Black ply</mat-label>
+			<mat-select [(ngModel)]="playerPly.Black">
+				<mat-option *ngFor="let ply of optionsInPlyDDL" [value]="ply">
+					{{ ply }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
 	</div>
 </main>
-<!-- </div> -->

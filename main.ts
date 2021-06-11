@@ -23,15 +23,10 @@ const assetsDir = `${__dirname}/dist/assets`;
 
 const faviconFileBasePath = assetsDir + '/favicon';
 const faviconFileExtension = isPlatformWindows ? 'ico' : 'png';
-// const icoIconFilePath = faviconFileBasePath + 'ico';
-// const pngIconFilePath = faviconFileBasePath + 'png';
-// const faviconFilePath = isPlatformWindows ? icoIconFilePath : pngIconFilePath;
 const faviconFilePath = `${faviconFileBasePath}.${faviconFileExtension}`;
 
 const macOSDockIconFilePath = assetsDir + '/icons/tom-weatherhead-512x512.png';
 
-// const browserWindowWidth = 992;
-// const browserWindowHeight = 750;
 const browserWindowWidth = 500;
 const browserWindowHeight = 750;
 
@@ -87,6 +82,7 @@ function setDockMenu() {
 	app.dock.setIcon(macOSDockIconFilePath);
 }
 
+let isTouchBarOn = false;
 let turbineBoostEnabled = false;
 
 function turnTouchBarOn() {
@@ -116,37 +112,116 @@ function turnTouchBarOn() {
 		textColor: '#FF0000'
 	});
 
-	// label1.label = 'disabled';
-
 	const touchBar = new TouchBar({
 		items: [touchBarButton, new TouchBarSpacer({ size: 'small' }), label1]
 	});
 
 	win.setTouchBar(touchBar);
+	isTouchBarOn = true;
 }
 
-// function turnTouchBarOff() {
-// 	if (!isPlatformMac) {
-// 		return;
-// 	}
+function turnTouchBarOff() {
+	if (!isPlatformMac) {
+		return;
+	}
 
-// 	win.setTouchBar(null);
-// }
+	win.setTouchBar(null);
+	isTouchBarOn = false;
+}
 
-// let isTouchBarOn = false;
+function keyboardEventHandler(
+	event: { preventDefault: () => void },
+	input: { code: string }
+) {
+	// For example, only enable application menu keyboard shortcuts when Ctrl/Cmd are down:
+	// win.webContents.setIgnoreMenuShortcuts(!input.control && !input.meta)
+
+	if (!input || !input.code) {
+		return;
+	}
+
+	// console.log('Electron before-input-event: input.code is', input.code);
+
+	switch (input.code) {
+		case 'KeyA':
+			app.showAboutPanel();
+			event.preventDefault();
+			break;
+
+		case 'KeyB':
+			if (isPlatformMac) {
+				setTimeout(() => app.dock.bounce(), 5000);
+			}
+
+			event.preventDefault();
+			break;
+
+		case 'KeyC':
+			if (isPlatformMac) {
+				app.dock.setBadge('Foo');
+			}
+
+			event.preventDefault();
+			break;
+
+		case 'KeyD':
+			if (isPlatformMac) {
+				app.dock.setBadge('');
+			}
+
+			event.preventDefault();
+			break;
+
+		case 'KeyE':
+			if (isPlatformMac && !isTouchBarOn) {
+				turnTouchBarOn();
+			}
+
+			event.preventDefault();
+			break;
+
+		case 'KeyF':
+			if (isPlatformMac && isTouchBarOn) {
+				turnTouchBarOff();
+			}
+
+			event.preventDefault();
+			break;
+
+		// app.dock.bounce(): number : Returns an integer ID representing the request.
+		//   - Note that this method can only be used while the app is not focused; when the app is not focused it will return -1
+		// app.dock.cancelBounce(id: number)
+		// app.dock.downloadFinished(filePath: string)
+		// app.dock.hide()
+		// app.dock.show(): Promise<void> : Resolves when the dock icon is shown
+		// app.dock.isVisible(): boolean
+		// app.dock.setMenu(menu: Menu)
+		// app.dock.getMenu(): Menu | null
+		// app.dock.setIcon(image: NativeImage | string);
+
+		case 'F5':
+			win.webContents.reload();
+			event.preventDefault();
+			break;
+
+		// case 'F11':
+		// 	console.log('TODO: Full-screen mode');
+		// 	break;
+
+		case 'F12':
+			win.webContents.toggleDevTools();
+			event.preventDefault();
+			break;
+
+		default:
+			break;
+	}
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function createWindow(launchInfo: unknown = undefined) {
 	// launchInfo is defined only on macOS
 	// console.log('launchInfo is', typeof launchInfo, launchInfo);
-
-	// if (!isPlatformMac && !isPlatformWindows) {
-	// 	console.log('platform is', typeof platform, platform);
-	// }
-
-	// const p = platform();
-
-	// console.log(`platform is ${typeof p} '${p}'`);
 
 	// macOS: This icon appears briefly in the Menu Bar, not scaled.
 	// -> Use a PNG that is less than 32x32.
@@ -157,16 +232,7 @@ function createWindow(launchInfo: unknown = undefined) {
 		throw new Error('FATAL: screen is falsy');
 	}
 
-	// const defaultDisplayWorkArea = {
-	// 	x: 0,
-	// 	y: 0,
-	// 	width: browserWindowWidth,
-	// 	height: browserWindowHeight
-	// };
 	const primaryDisplayWorkArea = screen.getPrimaryDisplay().workArea;
-	// const primaryDisplayWorkArea = screen
-	// 	? screen.getPrimaryDisplay().workArea
-	// 	: defaultDisplayWorkArea;
 	const dx = Math.floor(
 		(primaryDisplayWorkArea.width - browserWindowWidth) / 2
 	);
@@ -177,13 +243,8 @@ function createWindow(launchInfo: unknown = undefined) {
 	const browserWindowConfig = {
 		backgroundColor: '#ffffff',
 		// backgroundColor: '#7851a9', // From the TouchBar button
-		// icon: 'assets/favicon.png',
 		icon: faviconFilePath, // ThAW: Does this have any effect?
 		title: 'Forexus',
-		// x: primaryDisplayWorkArea.x,
-		// y: primaryDisplayWorkArea.y,
-		// width: primaryDisplayWorkArea.width,
-		// height: primaryDisplayWorkArea.height,
 		x: Math.max(dx, 0),
 		y: Math.max(dy, 0),
 		width: Math.min(browserWindowWidth, primaryDisplayWorkArea.width),
@@ -197,7 +258,6 @@ function createWindow(launchInfo: unknown = undefined) {
 			enableRemoteModule: true, // true if you want to run e2e tests with Spectron or use remote module in renderer context (ie. Angular)
 			nodeIntegration: true // ,
 			// preload: '/absolute/path/to/some/preload.js'
-			// preload: `${__dirname}/preload.js`
 			// worldSafeExecuteJavaScript: true
 		}
 	};
@@ -205,9 +265,7 @@ function createWindow(launchInfo: unknown = undefined) {
 	// Create the browser window.
 	win = new BrowserWindow(browserWindowConfig);
 
-	// win.loadFile('dist/index.html');
 	win.loadFile(`${__dirname}/dist/index.html`);
-	// win.loadFile(`file://${__dirname}/dist/index.html`);
 
 	// Event that fires when the window is closed.
 	win.on('closed', () => {
@@ -218,89 +276,7 @@ function createWindow(launchInfo: unknown = undefined) {
 	// 	ipcMain.send('on-browser-window-resize', primaryDisplayWorkArea.x, primaryDisplayWorkArea.y, primaryDisplayWorkArea.width, primaryDisplayWorkArea.height);
 	// });
 
-	win.webContents.on('before-input-event', (event, input) => {
-		// For example, only enable application menu keyboard shortcuts when Ctrl/Cmd are down:
-		// win.webContents.setIgnoreMenuShortcuts(!input.control && !input.meta)
-
-		if (input && input.code) {
-			// console.log('Electron before-input-event: input.code is', input.code);
-
-			switch (input.code) {
-				case 'KeyA':
-					app.showAboutPanel();
-					event.preventDefault();
-					break;
-
-				case 'KeyB':
-					if (isPlatformMac) {
-						setTimeout(() => app.dock.bounce(), 5000);
-					}
-
-					event.preventDefault();
-					break;
-
-				case 'KeyC':
-					if (isPlatformMac) {
-						app.dock.setBadge('Foo');
-					}
-
-					event.preventDefault();
-					break;
-
-				case 'KeyD':
-					if (isPlatformMac) {
-						app.dock.setBadge('');
-					}
-
-					event.preventDefault();
-					break;
-
-				// case 'KeyE':
-				// 	if (isPlatformMac) {
-				// 		turnTouchBarOn();
-				// 	}
-
-				// 	event.preventDefault();
-				// 	break;
-
-				// case 'KeyF':
-				// 	if (isPlatformMac) {
-				// 		turnTouchBarOff();
-				// 	}
-
-				// 	event.preventDefault();
-				// 	break;
-
-				// app.dock.bounce(): number : Returns an integer ID representing the request.
-				//   - Note that this method can only be used while the app is not focused; when the app is not focused it will return -1
-				// app.dock.cancelBounce(id: number)
-				// app.dock.downloadFinished(filePath: string)
-				// app.dock.hide()
-				// app.dock.show(): Promise<void> : Resolves when the dock icon is shown
-				// app.dock.isVisible(): boolean
-				// app.dock.setMenu(menu: Menu)
-				// app.dock.getMenu(): Menu | null
-				// app.dock.setIcon(image: NativeImage | string);
-
-				case 'F5':
-					win.webContents.reload();
-					event.preventDefault();
-					break;
-
-				// case 'F11':
-				// 	console.log('TODO: Full-screen mode');
-				// 	break;
-
-				case 'F12':
-					win.webContents.toggleDevTools();
-					event.preventDefault();
-					break;
-
-				default:
-					break;
-			}
-		}
-	});
+	win.webContents.on('before-input-event', keyboardEventHandler);
 
 	// Uncomment the line below to open the DevTools.
 	// win.webContents.openDevTools();

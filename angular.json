@@ -67,6 +67,23 @@
 						}
 					}
 				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "othello-angular-electron:build"
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"eslintConfig": ".eslintrc.js",
+						"lintFilePatterns": [
+							"*.ts",
+							"e2e/**.ts",
+							"src/**.ts"
+						]
+					}
+				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"options": {
@@ -76,12 +93,6 @@
 						"production": {
 							"browserTarget": "othello-angular-electron:build:production"
 						}
-					}
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "othello-angular-electron:build"
 					}
 				},
 				"test": {
@@ -100,17 +111,6 @@
 						],
 						"scripts": [],
 						"codeCoverage": true
-					}
-				},
-				"lint": {
-					"builder": "@angular-eslint/builder:lint",
-					"options": {
-						"eslintConfig": ".eslintrc.js",
-						"lintFilePatterns": [
-							"*.ts",
-							"e2e/**.ts",
-							"src/**.ts"
-						]
 					}
 				}
 			}
