@@ -14,10 +14,10 @@
 		<meta http-equiv="Content-Security-Policy"
 		content="default-src 'self';
 		connect-src ws://localhost:4200/ http://localhost:4200/ http://localhost/;
-		font-src file:;
+		font-src file: http://localhost:4200/;
 		img-src data: file: http://localhost:4200/;
-		script-src file: 'unsafe-inline';
-		style-src file: 'unsafe-inline'" />
+		script-src file: 'unsafe-inline' http://localhost:4200/;
+		style-src file: 'unsafe-inline' http://localhost:4200/" />
 
 		<link rel="icon" type="image/png" href="assets/favicon.png" />
 	</head>
