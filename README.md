@@ -12,14 +12,12 @@ Obligatory BadgeFest:
 
 [![status][status-badge-image]][status-url]
 [![build status][build-status-badge-image]][build-status-url]
-[![latest tag][latest-tag-badge-image]][latest-tag-url]
 [![watchers][watchers-badge-image]][watchers-url]
 [![stars][stars-badge-image]][stars-url]
 [![issues][issues-badge-image]][issues-url]
 [![forks][forks-badge-image]][forks-url]
 [![contributors][contributors-badge-image]][contributors-url]
 [![branches][branches-badge-image]][branches-url]
-[![releases][releases-badge-image]][releases-url]
 [![commits][commits-badge-image]][commits-url]
 [![last commit][last-commit-badge-image]][last-commit-url]
 [![known vulnerabilities][known-vulnerabilities-badge-image]][known-vulnerabilities-url]
@@ -78,8 +76,6 @@ $ npm run serve
 [status-url]: https://badgen.net/github/status/tom-weatherhead/othello-angular-electron
 [build-status-badge-image]: https://secure.travis-ci.org/tom-weatherhead/othello-angular-electron.svg
 [build-status-url]: https://travis-ci.org/tom-weatherhead/othello-angular-electron
-[latest-tag-badge-image]: https://badgen.net/github/tag/tom-weatherhead/othello-angular-electron
-[latest-tag-url]: https://github.com/tom-weatherhead/othello-angular-electron/tags
 [watchers-badge-image]: https://badgen.net/github/watchers/tom-weatherhead/othello-angular-electron
 [watchers-url]: https://github.com/tom-weatherhead/othello-angular-electron/watchers
 [stars-badge-image]: https://badgen.net/github/stars/tom-weatherhead/othello-angular-electron
@@ -92,8 +88,6 @@ $ npm run serve
 [contributors-url]: https://github.com/tom-weatherhead/othello-angular-electron/graphs/contributors
 [branches-badge-image]: https://badgen.net/github/branches/tom-weatherhead/othello-angular-electron
 [branches-url]: https://github.com/tom-weatherhead/othello-angular-electron/branches
-[releases-badge-image]: https://badgen.net/github/releases/tom-weatherhead/othello-angular-electron
-[releases-url]: https://github.com/tom-weatherhead/othello-angular-electron/releases
 [commits-badge-image]: https://badgen.net/github/commits/tom-weatherhead/othello-angular-electron
 [commits-url]: https://github.com/tom-weatherhead/othello-angular-electron/commits/master
 [last-commit-badge-image]: https://badgen.net/github/last-commit/tom-weatherhead/othello-angular-electron

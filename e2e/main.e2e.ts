@@ -197,7 +197,7 @@ describe('othello-angular-electron', () => {
 		assert.equal(count, 1);
 	});
 
-	it('should display h1 element containing the text: Othello', async () => {
+	it('Displays an h1 element containing the text: Othello', async () => {
 		// const elem = await client.$('app-home h1');
 		const elem = await client.$('h1');
 		const text = await elem.getText();
