@@ -129,10 +129,7 @@ function turnTouchBarOff() {
 	isTouchBarOn = false;
 }
 
-function keyboardEventHandler(
-	event: { preventDefault: () => void },
-	input: { code: string }
-) {
+function keyboardEventHandler(event: { preventDefault: () => void }, input: { code: string }) {
 	// For example, only enable application menu keyboard shortcuts when Ctrl/Cmd are down:
 	// win.webContents.setIgnoreMenuShortcuts(!input.control && !input.meta)
 
@@ -233,12 +230,8 @@ function createWindow(launchInfo: unknown = undefined) {
 	}
 
 	const primaryDisplayWorkArea = screen.getPrimaryDisplay().workArea;
-	const dx = Math.floor(
-		(primaryDisplayWorkArea.width - browserWindowWidth) / 2
-	);
-	const dy = Math.floor(
-		(primaryDisplayWorkArea.height - browserWindowHeight) / 2
-	);
+	const dx = Math.floor((primaryDisplayWorkArea.width - browserWindowWidth) / 2);
+	const dy = Math.floor((primaryDisplayWorkArea.height - browserWindowHeight) / 2);
 
 	const browserWindowConfig = {
 		backgroundColor: '#ffffff',

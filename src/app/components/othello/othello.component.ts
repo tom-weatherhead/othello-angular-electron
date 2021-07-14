@@ -178,12 +178,7 @@ export class OthelloComponent implements OnInit {
 
 		// Draw the square's border.
 		this.context.fillStyle = colourGold;
-		this.context.fillRect(
-			xOffset,
-			yOffset,
-			boardSquareWidth,
-			boardSquareHeight
-		);
+		this.context.fillRect(xOffset, yOffset, boardSquareWidth, boardSquareHeight);
 
 		// Fill the interior of the square.
 		this.context.fillStyle = colourGrey;
@@ -201,14 +196,7 @@ export class OthelloComponent implements OnInit {
 			const fillColour = isWhite ? colourWhite : colourBlack;
 
 			this.context.beginPath();
-			this.context.arc(
-				xOffset + centerX,
-				yOffset + centerY,
-				radius,
-				0,
-				2 * Math.PI,
-				false
-			);
+			this.context.arc(xOffset + centerX, yOffset + centerY, radius, 0, 2 * Math.PI, false);
 			this.context.fillStyle = fillColour;
 			this.context.strokeStyle = fillColour;
 			this.context.fill();
@@ -224,11 +212,7 @@ export class OthelloComponent implements OnInit {
 			// 	boardHeight,
 			// 	boardWidth
 			// );
-			this.board = createAndFillArray(
-				'',
-				boardHeight,
-				boardWidth
-			) as string[][];
+			this.board = createAndFillArray('', boardHeight, boardWidth) as string[][];
 		}
 
 		for (let row = 0; row < this.board.length; row++) {
@@ -236,9 +220,7 @@ export class OthelloComponent implements OnInit {
 				const currentColourName = this.board[row][col];
 				const newColourName =
 					this.mapTokenCharToPlayerColourName[
-						this.gameState.boardAsString[
-							row * this.board[row].length + col
-						]
+						this.gameState.boardAsString[row * this.board[row].length + col]
 					];
 
 				if (newColourName !== currentColourName) {
@@ -274,8 +256,7 @@ export class OthelloComponent implements OnInit {
 			console.log('Black population:', this.gameState.blackPopulation);
 			console.log('White population:', this.gameState.whitePopulation);
 
-			const diff =
-				this.gameState.blackPopulation - this.gameState.whitePopulation;
+			const diff = this.gameState.blackPopulation - this.gameState.whitePopulation;
 			let message;
 
 			if (diff > 0) {
@@ -302,10 +283,7 @@ export class OthelloComponent implements OnInit {
 
 		// console.log(`c is ${typeof c} '${c}'`);
 
-		if (
-			!this.gameState.isGameOver &&
-			(this.automaticMove[player] || this.doOneAutomove)
-		) {
+		if (!this.gameState.isGameOver && (this.automaticMove[player] || this.doOneAutomove)) {
 			this.doOneAutomove = false;
 
 			const maxPly = this.playerPly[player];
@@ -343,9 +321,7 @@ export class OthelloComponent implements OnInit {
 		const col = Math.floor(event.offsetX / boardSquareWidth);
 
 		if (row < 0 || row >= boardHeight || col < 0 || col >= boardWidth) {
-			console.error(
-				`Error in onClickCanvas() : row is ${row}; col is ${col}`
-			);
+			console.error(`Error in onClickCanvas() : row is ${row}; col is ${col}`);
 			console.error('  Error in onClickCanvas() : event is', event);
 
 			return;

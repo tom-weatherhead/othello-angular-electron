@@ -31,16 +31,15 @@ Obligatory BadgeFest:
 Features:
 
 - The application is built on the latest version of [Angular](https://angular.io/)
-- The application code can be [linted](https://en.wikipedia.org/wiki/Lint_(software)) (statically analyzed) by [TSLint](https://palantir.github.io/tslint/) before it is built
+- The application code can be [linted](https://en.wikipedia.org/wiki/Lint_(software)) (statically analyzed) by [ESLint](https://eslint.org/) before it is built
 - [System tests](https://en.wikipedia.org/wiki/System_testing) (e2e (end-to-end) tests) and [unit tests](https://en.wikipedia.org/wiki/Unit_testing) are enabled
 - [Code coverage](https://en.wikipedia.org/wiki/Code_coverage) is measured and reported
-- The application uses [Bootstrap](https://getbootstrap.com/) for some UI features within the Angular Web app
 - [SASS](https://sass-lang.com/) stylesheets are supported via [node-sass](https://github.com/sass/node-sass)
 - The application can be served as a Web app (e.g. via 'ng serve')
 - The application can run as a desktop application via [Electron](https://electronjs.org/)
 - The Electron desktop application can run within a [Docker](https://www.docker.com/) container
 - The application uses [PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/) for audio when running within a Docker container
-- [Travis CI](https://travis-ci.org/) is used for [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)
+- [Travis CI](https://travis-ci.com/) is used for [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)
 - [Code Climate](https://codeclimate.com/) is used to measure maintainability and to report code coverage
 - [Snyk](https://snyk.io/) is used to detect known vulnerabilities
 

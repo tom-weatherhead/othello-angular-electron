@@ -1,4 +1,4 @@
-// spec.ts
+// othello-angular-electron/src/app/components/othello/othello.component.spec.ts
 
 import { CommonModule } from '@angular/common';
 // import { NgModule } from '@angular/core';
